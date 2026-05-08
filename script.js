@@ -14,7 +14,10 @@ const hoverItems = document.querySelectorAll(
   "a, button, .project-card, .skill-panel, .timeline article, .contact-panel, .hero-metrics div"
 );
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+<<<<<<< HEAD
 const finePointerQuery = window.matchMedia("(pointer: fine)");
+=======
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
 
 const pointer = {
   x: window.innerWidth / 2,
@@ -24,31 +27,42 @@ const pointer = {
 };
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+<<<<<<< HEAD
 let currentScrollDepth = 0;
 let scrollFrame = null;
 let pointerFrame = null;
 
 const canUseRichMotion = () => !reduceMotion && finePointerQuery.matches && window.innerWidth > 780;
+=======
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
 
 const updateScrollState = () => {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
   const progressValue = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
   const depthValue = clamp(scrollTop / Math.max(window.innerHeight, 1), 0, 3);
+<<<<<<< HEAD
   const useParallax = canUseRichMotion();
 
   nav?.classList.toggle("is-scrolled", scrollTop > 16);
   currentScrollDepth = depthValue;
+=======
+
+  nav?.classList.toggle("is-scrolled", scrollTop > 16);
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
   document.documentElement.style.setProperty("--scroll-depth", depthValue.toFixed(3));
 
   if (progress) {
     progress.style.width = `${clamp(progressValue, 0, 100)}%`;
   }
 
+<<<<<<< HEAD
   if (!useParallax) {
     return;
   }
 
+=======
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
   parallaxItems.forEach((item, index) => {
     const rect = item.getBoundingClientRect();
     const midpoint = rect.top + rect.height / 2;
@@ -61,6 +75,7 @@ const updateScrollState = () => {
   });
 };
 
+<<<<<<< HEAD
 const requestScrollState = () => {
   if (scrollFrame) return;
 
@@ -70,6 +85,8 @@ const requestScrollState = () => {
   });
 };
 
+=======
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
 if ("IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -100,6 +117,7 @@ const moveCursor = (event) => {
 
   document.documentElement.style.setProperty("--mx", `${pointer.x}px`);
   document.documentElement.style.setProperty("--my", `${pointer.y}px`);
+<<<<<<< HEAD
 
   if (!finePointerQuery.matches) return;
 
@@ -111,6 +129,12 @@ const moveCursor = (event) => {
       cursor?.classList.add("is-visible");
     });
   }
+=======
+  document.documentElement.style.setProperty("--cursor-x", `${pointer.x}px`);
+  document.documentElement.style.setProperty("--cursor-y", `${pointer.y}px`);
+
+  cursor?.classList.add("is-visible");
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
 
   depthItems.forEach((item) => {
     const depth = Number(item.dataset.depth || 10);
@@ -127,7 +151,11 @@ hoverItems.forEach((item) => {
   item.addEventListener("pointerleave", disarmCursor);
 
   item.addEventListener("pointermove", (event) => {
+<<<<<<< HEAD
     if (!canUseRichMotion()) return;
+=======
+    if (reduceMotion) return;
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
 
     const rect = item.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width;
@@ -168,18 +196,30 @@ const createDepthScene = () => {
     canvas: depthCanvas,
     alpha: true,
     antialias: true,
+<<<<<<< HEAD
     preserveDrawingBuffer: false,
     powerPreference: "high-performance",
   });
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 780 ? 1.15 : 1.5));
+=======
+    preserveDrawingBuffer: true,
+    powerPreference: "high-performance",
+  });
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
   renderer.setClearColor(0x000000, 0);
 
   const world = new THREE.Group();
   scene.add(world);
 
   const starGeometry = new THREE.BufferGeometry();
+<<<<<<< HEAD
   const starCount = window.innerWidth < 780 ? 130 : 420;
+=======
+  const starCount = window.innerWidth < 700 ? 260 : 620;
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
   const starPositions = new Float32Array(starCount * 3);
 
   for (let i = 0; i < starCount; i += 1) {
@@ -210,9 +250,13 @@ const createDepthScene = () => {
     new THREE.MeshBasicMaterial({ color: 0xf5e64a, wireframe: true, transparent: true, opacity: 0.26 }),
   ];
 
+<<<<<<< HEAD
   const shardCount = window.innerWidth < 780 ? 8 : 14;
 
   for (let i = 0; i < shardCount; i += 1) {
+=======
+  for (let i = 0; i < 18; i += 1) {
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
     const geometry = i % 2 === 0 ? new THREE.TetrahedronGeometry(0.22 + Math.random() * 0.24) : new THREE.IcosahedronGeometry(0.14 + Math.random() * 0.18, 0);
     const mesh = new THREE.Mesh(geometry, shardMaterials[i % shardMaterials.length]);
 
@@ -234,19 +278,28 @@ const createDepthScene = () => {
     const width = Math.max(1, Math.floor(rect.width));
     const height = Math.max(1, Math.floor(rect.height));
 
+<<<<<<< HEAD
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 780 ? 1.15 : 1.5));
+=======
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
   };
 
   const animate = (time = 0) => {
+<<<<<<< HEAD
     if (document.hidden) {
       window.requestAnimationFrame(animate);
       return;
     }
 
     const scrollDepth = currentScrollDepth;
+=======
+    const scrollDepth = Number(
+      getComputedStyle(document.documentElement).getPropertyValue("--scroll-depth") || 0
+    );
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
     const t = time * 0.001;
 
     world.rotation.y += (pointer.nx * 0.34 - world.rotation.y) * 0.045;
@@ -268,9 +321,13 @@ const createDepthScene = () => {
     window.requestAnimationFrame(animate);
   };
 
+<<<<<<< HEAD
   window.addEventListener("resize", () => {
     window.requestAnimationFrame(resize);
   });
+=======
+  window.addEventListener("resize", resize);
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
   resize();
 
   if (!reduceMotion) {
@@ -282,8 +339,13 @@ const createDepthScene = () => {
   return { renderer, scene, camera, resize };
 };
 
+<<<<<<< HEAD
 window.addEventListener("scroll", requestScrollState, { passive: true });
 window.addEventListener("resize", requestScrollState);
+=======
+window.addEventListener("scroll", updateScrollState, { passive: true });
+window.addEventListener("resize", updateScrollState);
+>>>>>>> f8c887761bd423e02ba0992cb06be6165fe47037
 window.addEventListener("pointermove", moveCursor, { passive: true });
 window.addEventListener("pointerleave", () => cursor?.classList.remove("is-visible"));
 
