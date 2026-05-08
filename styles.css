@@ -1061,6 +1061,8 @@ h3 {
     top: 6px;
     left: 6px;
     right: 6px;
+    display: grid;
+    grid-template-columns: minmax(0, auto) auto;
     min-height: 34px;
     gap: 8px;
     padding: 5px 8px;
@@ -1087,7 +1089,19 @@ h3 {
   }
 
   .nav-cta {
-    display: none;
+    position: static;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+    display: inline-flex;
+    flex-shrink: 0;
+    min-width: 74px;
+    min-height: 30px;
+    padding: 0 10px;
+    font-size: 0.56rem;
+    width: auto;
+    background: linear-gradient(135deg, var(--hot), #ff146d 55%, #ff2d8a);
   }
 
   .hero {
@@ -1151,8 +1165,8 @@ h3 {
   }
 
   .hero-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     margin-top: 14px;
   }
@@ -1306,7 +1320,7 @@ h3 {
 
   .hero-actions,
   .contact-actions {
-    align-items: stretch;
+    align-items: center;
   }
 
   .hero-content,
@@ -1321,8 +1335,7 @@ h3 {
     overflow-wrap: break-word;
   }
 
-  .btn,
-  .nav-cta {
+  .contact-actions .btn {
     width: 100%;
   }
 
