@@ -199,34 +199,44 @@ img {
 
 .site-nav {
   position: fixed;
-  top: 10px;
-  left: clamp(10px, 3vw, 34px);
-  right: clamp(10px, 3vw, 34px);
+  top: 7px;
+  left: clamp(7px, 2vw, 22px);
+  right: clamp(7px, 2vw, 22px);
   z-index: 60;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  min-height: 46px;
-  padding: 7px 10px 7px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 14px;
+  min-height: 34px;
+  padding: 4px 7px 4px 10px;
+  border: 0;
   border-radius: 6px;
-  background: rgba(5, 5, 10, 0.26);
-  box-shadow: 0 12px 42px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(12px);
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
 .site-nav.is-scrolled {
-  border-color: rgba(255, 10, 91, 0.35);
-  background: rgba(5, 5, 10, 0.82);
+  background: rgba(5, 5, 10, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.brand,
+.site-links {
+  flex-shrink: 0;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   min-width: 0;
+  padding: 5px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: rgba(5, 5, 10, 0.42);
+  backdrop-filter: blur(10px);
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -234,33 +244,39 @@ img {
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 26px;
+  width: 28px;
+  height: 21px;
   color: #111;
   background: var(--text);
   clip-path: polygon(0 12%, 88% 0, 100% 80%, 10% 100%);
-  font-size: 0.82rem;
+  font-size: 0.66rem;
   line-height: 1;
 }
 
 .brand-word {
   white-space: nowrap;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .site-links {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 2vw, 26px);
+  gap: clamp(10px, 1.4vw, 18px);
+  margin-right: auto;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
   color: rgba(255, 255, 255, 0.78);
-  font-size: 0.68rem;
+  background: rgba(5, 5, 10, 0.42);
+  backdrop-filter: blur(10px);
+  font-size: 0.58rem;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 .site-links a {
   position: relative;
-  padding: 6px 0;
+  padding: 5px 0;
 }
 
 .site-links a::after {
@@ -287,12 +303,12 @@ img {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 36px;
-  padding: 0 15px;
+  min-height: 29px;
+  padding: 0 11px;
   border: 1px solid transparent;
   border-radius: 4px;
   font-family: inherit;
-  font-size: 0.72rem;
+  font-size: 0.64rem;
   font-weight: 900;
   text-transform: uppercase;
   white-space: nowrap;
@@ -344,20 +360,16 @@ img {
 
 .hero-video {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
+  inset: 0;
   z-index: -4;
-  width: min(100%, calc((100svh * 16 / 9) + 80px));
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 50% 34%;
   opacity: 1;
   background: #08060b url("assets/hero-poster.jpg") center / cover no-repeat;
   pointer-events: none;
-  transform: translate3d(-50%, 0, 0);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 42px, #000 calc(100% - 42px), transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 42px, #000 calc(100% - 42px), transparent 100%);
+  transform: none;
 }
 
 .depth-canvas {
@@ -378,9 +390,9 @@ img {
   z-index: -2;
   content: "";
   background:
-    linear-gradient(90deg, rgba(4, 3, 8, 0.82) 0%, rgba(6, 4, 9, 0.48) 32%, rgba(6, 4, 9, 0.1) 58%, rgba(6, 4, 9, 0.03) 100%),
+    linear-gradient(90deg, rgba(4, 3, 8, 0.66) 0%, rgba(6, 4, 9, 0.34) 32%, rgba(6, 4, 9, 0.07) 58%, rgba(6, 4, 9, 0.02) 100%),
     radial-gradient(circle at 78% 34%, rgba(53, 216, 230, 0.08), transparent 24rem),
-    linear-gradient(180deg, rgba(5, 6, 11, 0.03) 0%, rgba(5, 6, 11, 0.22) 72%, #05060b 100%);
+    linear-gradient(180deg, rgba(5, 6, 11, 0.02) 0%, rgba(5, 6, 11, 0.14) 72%, #05060b 100%);
 }
 
 .hero::after {
@@ -389,9 +401,9 @@ img {
   z-index: -1;
   content: "";
   background:
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.024) 0 1px, transparent 1px 9px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.22), transparent 46%, rgba(0, 0, 0, 0.03));
-  opacity: 0.045;
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 9px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.14), transparent 46%, rgba(0, 0, 0, 0.02));
+  opacity: 0.032;
 }
 
 .hero-grid {
@@ -968,14 +980,14 @@ h3 {
   }
 
   .site-nav {
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    min-height: 42px;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    min-height: 34px;
     gap: 8px;
-    padding: 6px 9px;
-    background: rgba(5, 5, 10, 0.2);
-    backdrop-filter: blur(10px);
+    padding: 5px 8px;
+    background: transparent;
+    backdrop-filter: none;
   }
 
   .site-links {
@@ -987,13 +999,13 @@ h3 {
   }
 
   .brand-mark {
-    width: 31px;
-    height: 23px;
-    font-size: 0.72rem;
+    width: 29px;
+    height: 22px;
+    font-size: 0.68rem;
   }
 
   .brand-word {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
   }
 
   .nav-cta {
@@ -1007,16 +1019,15 @@ h3 {
   }
 
   .hero-video {
-    left: 0;
     width: 100%;
-    object-position: 50% center;
-    transform: translateZ(0);
+    object-fit: cover;
+    object-position: 55% 34%;
   }
 
   .hero::before {
     background:
-      linear-gradient(180deg, rgba(4, 3, 8, 0.03) 0%, rgba(4, 3, 8, 0.16) 38%, rgba(4, 3, 8, 0.86) 100%),
-      linear-gradient(90deg, rgba(4, 3, 8, 0.62) 0%, rgba(4, 3, 8, 0.3) 48%, rgba(4, 3, 8, 0.06) 100%),
+      linear-gradient(180deg, rgba(4, 3, 8, 0.02) 0%, rgba(4, 3, 8, 0.12) 38%, rgba(4, 3, 8, 0.74) 100%),
+      linear-gradient(90deg, rgba(4, 3, 8, 0.48) 0%, rgba(4, 3, 8, 0.22) 48%, rgba(4, 3, 8, 0.04) 100%),
       radial-gradient(circle at 78% 34%, rgba(53, 216, 230, 0.08), transparent 24rem);
   }
 
