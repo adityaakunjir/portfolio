@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Design system placeholder</title>
+  <desc id="desc">A neon interface kit placeholder image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#15101d"/>
+      <stop offset=".55" stop-color="#090c16"/>
+      <stop offset="1" stop-color="#10242a"/>
+    </linearGradient>
+    <pattern id="scan" width="5" height="5" patternUnits="userSpaceOnUse">
+      <rect width="5" height="1" fill="#fff" opacity=".1"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="560" fill="url(#bg)"/>
+  <circle cx="160" cy="122" r="172" fill="#ff0a5b" opacity=".14"/>
+  <circle cx="748" cy="390" r="220" fill="#35d8e6" opacity=".13"/>
+  <g stroke="#ffffff" stroke-opacity=".15" fill="#0b0d15">
+    <rect x="72" y="72" width="246" height="416" rx="6"/>
+    <rect x="350" y="72" width="478" height="126" rx="6"/>
+    <rect x="350" y="226" width="224" height="262" rx="6"/>
+    <rect x="604" y="226" width="224" height="262" rx="6"/>
+  </g>
+  <g fill="#ff0a5b">
+    <rect x="104" y="112" width="78" height="32" rx="3"/>
+    <rect x="104" y="166" width="166" height="16" rx="3"/>
+    <rect x="104" y="204" width="122" height="16" rx="3"/>
+  </g>
+  <g fill="#35d8e6">
+    <rect x="388" y="112" width="136" height="32" rx="3"/>
+    <rect x="548" y="112" width="88" height="32" rx="3"/>
+    <rect x="660" y="112" width="120" height="32" rx="3"/>
+  </g>
+  <g fill="#f5e64a">
+    <circle cx="156" cy="326" r="42"/>
+    <rect x="220" y="294" width="50" height="64" rx="6"/>
+    <path d="M125 421h145l-24 38H149z"/>
+  </g>
+  <g fill="none" stroke-linecap="round">
+    <path d="M390 304h142M390 356h104M390 408h148" stroke="#ffffff" stroke-opacity=".52" stroke-width="7"/>
+    <path d="M646 330h130M646 386h92" stroke="#35d8e6" stroke-width="9"/>
+    <path d="M646 442h142" stroke="#ff0a5b" stroke-width="9"/>
+  </g>
+  <rect x="72" y="72" width="756" height="416" fill="none" stroke="#f5e64a" stroke-opacity=".3"/>
+  <rect width="900" height="560" fill="url(#scan)" opacity=".35"/>
+</svg>

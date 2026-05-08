@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Realtime dashboard placeholder</title>
+  <desc id="desc">A cyberpunk command dashboard placeholder image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0c1824"/>
+      <stop offset=".54" stop-color="#102a34"/>
+      <stop offset="1" stop-color="#210817"/>
+    </linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0v42" fill="none" stroke="#35d8e6" stroke-opacity=".16"/>
+    </pattern>
+    <pattern id="scan" width="5" height="5" patternUnits="userSpaceOnUse">
+      <rect width="5" height="1" fill="#fff" opacity=".1"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="560" fill="url(#bg)"/>
+  <rect width="900" height="560" fill="url(#grid)"/>
+  <circle cx="712" cy="144" r="210" fill="#35d8e6" opacity=".12"/>
+  <circle cx="168" cy="405" r="178" fill="#ff0a5b" opacity=".18"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M82 392c79-91 156-126 231-105 65 18 118 17 157-1 56-27 118-27 187 0 47 18 101 12 161-19" stroke="#f5e64a" stroke-width="8"/>
+    <path d="M82 436c78-62 155-78 231-49 61 23 114 30 159 21 73-14 137-7 194 22 47 24 96 24 150 0" stroke="#35d8e6" stroke-width="5" opacity=".9"/>
+    <path d="M82 312h168m34 0h252m34 0h246" stroke="#fff" stroke-width="2" opacity=".22"/>
+  </g>
+  <g fill="#0a0b12" stroke="#ffffff" stroke-opacity=".16">
+    <rect x="76" y="70" width="186" height="132" rx="6"/>
+    <rect x="292" y="70" width="250" height="132" rx="6"/>
+    <rect x="572" y="70" width="250" height="132" rx="6"/>
+    <rect x="76" y="236" width="746" height="248" rx="6"/>
+  </g>
+  <g fill="#35d8e6">
+    <rect x="104" y="99" width="38" height="68"/>
+    <rect x="154" y="128" width="38" height="39"/>
+    <rect x="204" y="84" width="38" height="83"/>
+  </g>
+  <g fill="#ff0a5b">
+    <rect x="322" y="98" width="28" height="74"/>
+    <rect x="362" y="122" width="28" height="50"/>
+    <rect x="402" y="87" width="28" height="85"/>
+    <rect x="442" y="111" width="28" height="61"/>
+    <rect x="482" y="137" width="28" height="35"/>
+  </g>
+  <g fill="#f5e64a">
+    <circle cx="654" cy="136" r="38"/>
+    <path d="M654 98a38 38 0 0 1 32 58l-32-20z" fill="#35d8e6"/>
+  </g>
+  <rect width="900" height="560" fill="url(#scan)" opacity=".38"/>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 920" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract developer portrait placeholder</title>
+  <desc id="desc">A stylized neon developer silhouette for the hero asset slot.</desc>
+  <defs>
+    <linearGradient id="coat" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#38d8e8"/>
+      <stop offset="0.42" stop-color="#7ce3d0"/>
+      <stop offset="1" stop-color="#f7e04b"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" x2="1">
+      <stop offset="0" stop-color="#ff0a5b"/>
+      <stop offset="1" stop-color="#7a0f4c"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" values="1 0 0 0 1 0 1 0 0 .1 0 0 1 0 .45 0 0 0 .55 0"/>
+      <feBlend in="SourceGraphic"/>
+    </filter>
+    <pattern id="scan" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="1" fill="#ffffff" opacity=".12"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="920" fill="none"/>
+  <g opacity=".42">
+    <circle cx="404" cy="190" r="144" fill="#ff0a5b"/>
+    <circle cx="468" cy="280" r="202" fill="#35d8e6" opacity=".12"/>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M333 82c-74 8-123 60-128 130-5 78 36 134 112 150 82 17 154-28 170-101 17-76-54-188-154-179z" fill="#11131b"/>
+    <path d="M225 238c-22-36 3-101 43-127 35-23 92-37 141 3 34 28 56 86 66 147-46-43-88-62-126-57-47 6-86 20-124 34z" fill="#05060b"/>
+    <path d="M208 353c48-38 91-58 145-58 68 0 132 35 174 82 20 22 34 63 45 117l31 174c8 45-21 84-67 84H200c-51 0-86-48-72-97l50-176c14-50 17-91 30-126z" fill="url(#coat)"/>
+    <path d="M162 432l91 55-49 276h-99c-23 0-39-23-31-45l69-196c8-23 9-53 19-90z" fill="url(#pink)"/>
+    <path d="M536 422l-73 70 45 271h101c25 0 43-24 36-48l-61-210c-10-35-21-61-48-83z" fill="#0e1524"/>
+    <path d="M266 510h153l36 253H223l43-253z" fill="#101727"/>
+    <path d="M235 366c54 61 135 88 245 79 9 38 18 72 25 103-122 17-219-11-291-85 7-34 13-66 21-97z" fill="#f3efe5" opacity=".15"/>
+    <path d="M262 339c56 46 123 62 203 50l10 48c-91 16-169-1-235-52l22-46z" fill="#ffffff" opacity=".18"/>
+    <path d="M245 268c67-7 119-31 157-72 19 44 41 78 67 102-13 58-49 98-108 108-53-10-91-42-116-138z" fill="#171927"/>
+    <path d="M270 254c42 13 95 13 158-2" stroke="#35d8e6" stroke-width="6" opacity=".6"/>
+    <path d="M153 753h436" stroke="#ff0a5b" stroke-width="10" stroke-linecap="round"/>
+    <path d="M207 811h266" stroke="#f5e64a" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g fill="none" stroke="#ffffff" opacity=".24">
+    <path d="M126 314l-72 21"/>
+    <path d="M583 219l83-34"/>
+    <path d="M608 586l65 21"/>
+    <path d="M89 612l-62 38"/>
+  </g>
+  <rect width="720" height="920" fill="url(#scan)" opacity=".34"/>
+</svg>
