@@ -1099,7 +1099,7 @@ h3 {
   .hero-video {
     width: 100%;
     object-fit: cover;
-    object-position: 55% 34%;
+    object-position: 45% 34%;
   }
 
   .hero::before {
