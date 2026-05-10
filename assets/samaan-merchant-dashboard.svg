@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Samaan merchant dashboard</title>
+  <desc id="desc">Merchant dashboard showing order cards and store stats.</desc>
+  <rect width="900" height="560" fill="#fffaf4"/>
+  <rect x="0" y="0" width="168" height="560" fill="#ffffff"/>
+  <rect x="24" y="132" width="120" height="42" rx="12" fill="#ff7a2b"/>
+  <text x="214" y="72" fill="#202124" font-family="Arial, sans-serif" font-size="30" font-weight="800">Dashboard</text>
+  <g fill="#fff" stroke="#efded2">
+    <rect x="214" y="112" width="180" height="90" rx="16"/>
+    <rect x="422" y="112" width="180" height="90" rx="16"/>
+    <rect x="630" y="112" width="180" height="90" rx="16"/>
+    <rect x="214" y="250" width="596" height="102" rx="16"/>
+    <rect x="214" y="384" width="596" height="102" rx="16"/>
+  </g>
+  <text x="244" y="304" fill="#202124" font-family="Arial, sans-serif" font-size="22" font-weight="800">New order - Sharma Kirana</text>
+  <text x="244" y="438" fill="#202124" font-family="Arial, sans-serif" font-size="22" font-weight="800">Order preparing</text>
+</svg>

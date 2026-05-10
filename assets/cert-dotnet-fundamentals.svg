@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">.NET Fundamentals certificate preview</title>
+  <desc id="desc">Certificate preview for .NET Fundamentals.</desc>
+  <rect width="900" height="520" fill="#ffffff"/>
+  <rect x="0" y="0" width="900" height="118" fill="#512bd4"/>
+  <text x="76" y="76" fill="#ffffff" font-family="Arial, sans-serif" font-size="40" font-weight="900">.NET Fundamentals</text>
+  <text x="76" y="194" fill="#1f2937" font-family="Arial, sans-serif" font-size="34" font-weight="800">Certificate of Completion</text>
+  <text x="76" y="258" fill="#64748b" font-family="Arial, sans-serif" font-size="22">C#, runtime basics, APIs, and backend foundations</text>
+  <rect x="76" y="326" width="310" height="64" rx="10" fill="#f5f3ff"/>
+  <text x="106" y="366" fill="#512bd4" font-family="Arial, sans-serif" font-size="24" font-weight="900">Aditya Kunjir</text>
+  <circle cx="724" cy="326" r="78" fill="#ede9fe" stroke="#512bd4" stroke-width="8"/>
+  <text x="672" y="340" fill="#512bd4" font-family="Arial, sans-serif" font-size="34" font-weight="900">.NET</text>
+</svg>

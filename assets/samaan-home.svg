@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Samaan product discovery</title>
+  <desc id="desc">Home screen with green hero banner and nearby kirana store cards.</desc>
+  <rect width="900" height="560" fill="#fffaf4"/>
+  <rect x="36" y="38" width="828" height="48" rx="12" fill="#ffffff" stroke="#efe0d5"/>
+  <text x="64" y="69" fill="#ff7a2b" font-family="Arial, sans-serif" font-size="20" font-weight="800">Samaan</text>
+  <rect x="74" y="126" width="752" height="178" rx="22" fill="#04c75b"/>
+  <text x="116" y="202" fill="#fff" font-family="Arial, sans-serif" font-size="48" font-weight="800">Fresh Vegetables</text>
+  <text x="116" y="240" fill="#eaffef" font-family="Arial, sans-serif" font-size="21">Direct from farms</text>
+  <rect x="638" y="154" width="150" height="116" rx="18" fill="#0a6a33"/>
+  <circle cx="690" cy="214" r="30" fill="#ff5f33"/>
+  <circle cx="725" cy="198" r="24" fill="#ffd457"/>
+  <text x="74" y="360" fill="#202124" font-family="Arial, sans-serif" font-size="24" font-weight="800">Nearby Kirana Shops</text>
+  <g fill="#fff" stroke="#efded2">
+    <rect x="74" y="386" width="224" height="110" rx="16"/>
+    <rect x="338" y="386" width="224" height="110" rx="16"/>
+    <rect x="602" y="386" width="224" height="110" rx="16"/>
+  </g>
+  <g fill="#ff7a2b" font-family="Arial, sans-serif" font-size="18" font-weight="800">
+    <text x="100" y="432">Sharma Kirana</text>
+    <text x="364" y="432">Fresh Mart</text>
+    <text x="628" y="432">Green Valley</text>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Advanced C# certificate preview</title>
+  <desc id="desc">Certificate preview for Advanced C# Object-Oriented Programming.</desc>
+  <rect width="900" height="520" fill="#ffffff"/>
+  <rect x="58" y="58" width="784" height="404" rx="18" fill="#f8fbff" stroke="#dbeafe"/>
+  <rect x="98" y="98" width="92" height="92" rx="12" fill="#0a66c2"/>
+  <text x="122" y="160" fill="#fff" font-family="Arial, sans-serif" font-size="48" font-weight="900">in</text>
+  <text x="238" y="144" fill="#1f2937" font-family="Arial, sans-serif" font-size="34" font-weight="800">Advanced C#</text>
+  <text x="238" y="198" fill="#0a66c2" font-family="Arial, sans-serif" font-size="42" font-weight="900">Object-Oriented Programming</text>
+  <text x="238" y="262" fill="#64748b" font-family="Arial, sans-serif" font-size="22">Certificate of completion</text>
+  <line x1="238" y1="318" x2="730" y2="318" stroke="#dbeafe"/>
+  <text x="238" y="370" fill="#334155" font-family="Arial, sans-serif" font-size="24" font-weight="700">Aditya Kunjir</text>
+</svg>

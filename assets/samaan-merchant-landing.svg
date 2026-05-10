@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Samaan merchant landing</title>
+  <desc id="desc">Merchant onboarding landing page with orange call to action.</desc>
+  <rect width="900" height="560" fill="#fff6ee"/>
+  <text x="58" y="72" fill="#ff7a2b" font-family="Arial, sans-serif" font-size="22" font-weight="800">Samaan Merchant</text>
+  <rect x="320" y="116" width="260" height="30" rx="15" fill="#fff0e5"/>
+  <text x="350" y="137" fill="#ff7a2b" font-family="Arial, sans-serif" font-size="14" font-weight="800">For Kirana Shop Owners</text>
+  <text x="250" y="226" fill="#202124" font-family="Arial, sans-serif" font-size="50" font-weight="900">Grow Your Kirana</text>
+  <text x="246" y="286" fill="#202124" font-family="Arial, sans-serif" font-size="50" font-weight="900">Shop with <tspan fill="#ff7a2b">Samaan</tspan></text>
+  <text x="254" y="334" fill="#6b6b6b" font-family="Arial, sans-serif" font-size="20">Manage inventory, track orders, and reach local customers.</text>
+  <rect x="322" y="386" width="158" height="48" rx="12" fill="#ff7a2b"/>
+  <rect x="500" y="386" width="180" height="48" rx="12" fill="#ffffff" stroke="#efded2"/>
+</svg>
