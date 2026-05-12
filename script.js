@@ -325,3 +325,51 @@ const depthScene = createDepthScene();
 
 updateScrollState();
 depthScene?.resize();
+
+/* ── Project detail panels ── */
+let savedScrollY = 0;
+
+function openPanel(projectId) {
+  const panel = document.getElementById("panel-" + projectId);
+  if (!panel) return;
+
+  savedScrollY = window.scrollY;
+  panel.removeAttribute("hidden");
+
+  // Let display:block kick in, then slide
+  requestAnimationFrame(() => {
+    panel.scrollTop = 0;
+  });
+
+  document.body.style.overflow = "hidden";
+}
+
+function closePanel() {
+  const openPanels = document.querySelectorAll(".project-panel:not([hidden])");
+  openPanels.forEach(p => {
+    p.setAttribute("hidden", "");
+  });
+  document.body.style.overflow = "";
+  window.scrollTo(0, savedScrollY);
+}
+
+// Open on card click
+document.querySelectorAll("[data-open-project]").forEach(card => {
+  card.addEventListener("click", () => openPanel(card.dataset.openProject));
+  card.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openPanel(card.dataset.openProject);
+    }
+  });
+});
+
+// Close on back button
+document.querySelectorAll("[data-close-project]").forEach(btn => {
+  btn.addEventListener("click", closePanel);
+});
+
+// Close on Escape
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closePanel();
+});
