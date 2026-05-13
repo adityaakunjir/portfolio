@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Samaan order history</title>
+  <desc id="desc">Order history with active and completed order cards.</desc>
+  <rect width="900" height="560" fill="#fffaf4"/>
+  <text x="92" y="70" fill="#202124" font-family="Arial, sans-serif" font-size="30" font-weight="800">My Orders</text>
+  <g fill="#fff" stroke="#efded2">
+    <rect x="92" y="112" width="716" height="112" rx="16"/>
+    <rect x="92" y="258" width="716" height="112" rx="16"/>
+    <rect x="92" y="404" width="716" height="112" rx="16"/>
+  </g>
+  <g fill="#ff7a2b" font-family="Arial, sans-serif" font-size="15" font-weight="800">
+    <text x="126" y="150">Active</text>
+    <text x="126" y="296">Completed</text>
+    <text x="126" y="442">Completed</text>
+  </g>
+  <g fill="#202124" font-family="Arial, sans-serif" font-size="21" font-weight="800">
+    <text x="126" y="184">Chana Dal, Red Chili Powder</text>
+    <text x="126" y="330">Potato, Onion</text>
+    <text x="126" y="476">Monthly grocery reorder</text>
+  </g>
+  <g fill="#13a052" font-family="Arial, sans-serif" font-size="16" font-weight="700">
+    <text x="646" y="184">Order Placed</text>
+    <text x="646" y="330">Delivered</text>
+    <text x="646" y="476">Delivered</text>
+  </g>
+</svg>

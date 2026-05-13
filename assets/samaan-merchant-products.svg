@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Samaan merchant products</title>
+  <desc id="desc">Merchant product catalog with item cards and stock badges.</desc>
+  <rect width="900" height="560" fill="#fffaf4"/>
+  <rect x="0" y="0" width="160" height="560" fill="#ffffff"/>
+  <rect x="22" y="188" width="116" height="42" rx="12" fill="#ff7a2b"/>
+  <text x="202" y="78" fill="#202124" font-family="Arial, sans-serif" font-size="30" font-weight="800">Products</text>
+  <rect x="202" y="116" width="600" height="44" rx="12" fill="#ffffff" stroke="#efded2"/>
+  <g fill="#fff" stroke="#efded2">
+    <rect x="202" y="202" width="142" height="214" rx="16"/>
+    <rect x="370" y="202" width="142" height="214" rx="16"/>
+    <rect x="538" y="202" width="142" height="214" rx="16"/>
+    <rect x="706" y="202" width="142" height="214" rx="16"/>
+  </g>
+  <g fill="#13a052" font-family="Arial, sans-serif" font-size="14" font-weight="800">
+    <text x="226" y="234">In Stock</text>
+    <text x="394" y="234">In Stock</text>
+    <text x="562" y="234">In Stock</text>
+    <text x="730" y="234">In Stock</text>
+  </g>
+  <g fill="#202124" font-family="Arial, sans-serif" font-size="18" font-weight="800">
+    <text x="226" y="368">Tea</text>
+    <text x="394" y="368">Red Chili</text>
+    <text x="562" y="368">Chana Dal</text>
+    <text x="730" y="368">Coriander</text>
+  </g>
+</svg>

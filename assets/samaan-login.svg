@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Samaan customer login</title>
+  <desc id="desc">Orange grocery landing panel beside a login form.</desc>
+  <rect width="900" height="560" fill="#fffaf4"/>
+  <rect x="36" y="40" width="330" height="480" rx="18" fill="#ff7a2b"/>
+  <text x="76" y="108" fill="#fff" font-family="Arial, sans-serif" font-size="28" font-weight="700">Samaan</text>
+  <text x="76" y="236" fill="#fff" font-family="Arial, sans-serif" font-size="52" font-weight="800">Fresh groceries,</text>
+  <text x="76" y="294" fill="#fff" font-family="Arial, sans-serif" font-size="52" font-weight="800">fast delivery.</text>
+  <rect x="452" y="64" width="360" height="432" rx="24" fill="#ffffff" stroke="#f0ddd0"/>
+  <text x="570" y="126" fill="#202124" font-family="Arial, sans-serif" font-size="30" font-weight="800">Welcome Back</text>
+  <text x="560" y="160" fill="#767676" font-family="Arial, sans-serif" font-size="17">Login to continue</text>
+  <rect x="512" y="206" width="240" height="46" rx="10" fill="#fff5ec" stroke="#ffc09c"/>
+  <rect x="512" y="272" width="240" height="46" rx="10" fill="#fff" stroke="#ead7cc"/>
+  <rect x="512" y="338" width="240" height="48" rx="12" fill="#ff8a4c"/>
+  <text x="593" y="369" fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="700">Sign in</text>
+</svg>

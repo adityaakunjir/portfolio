@@ -7,11 +7,13 @@ const depthCanvas = document.querySelector("[data-depth-scene]");
 const revealItems = document.querySelectorAll(".reveal");
 const depthItems = document.querySelectorAll("[data-depth]");
 const glitchTitle = document.querySelector(".glitch-title");
+const projectDetails = document.querySelectorAll("[data-project-detail]");
+const projectBackButtons = document.querySelectorAll("[data-project-back]");
 const parallaxItems = document.querySelectorAll(
-  ".project-card, .skill-panel, .timeline article, .contact-panel, .hero-metrics div"
+  ".project-card, .project-detail-panel, .certificate-card, .skill-panel, .timeline article, .contact-panel, .hero-metrics div"
 );
 const hoverItems = document.querySelectorAll(
-  "a, button, .project-card, .skill-panel, .timeline article, .contact-panel, .hero-metrics div"
+  "a, button, .project-card, .project-detail-panel, .certificate-card, .skill-panel, .timeline article, .contact-panel, .hero-metrics div"
 );
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointerQuery = window.matchMedia("(pointer: fine)");
@@ -83,7 +85,16 @@ if ("IntersectionObserver" in window) {
     { threshold: 0.16 }
   );
 
-  revealItems.forEach((item) => revealObserver.observe(item));
+  revealItems.forEach((item, i) => {
+    // Stagger sibling cards within grids
+    const parent = item.parentElement;
+    if (parent && (parent.classList.contains("project-grid") || parent.classList.contains("skill-grid") || parent.classList.contains("timeline"))) {
+      const siblings = Array.from(parent.querySelectorAll(".reveal"));
+      const idx = siblings.indexOf(item);
+      item.style.transitionDelay = `${idx * 80}ms`;
+    }
+    revealObserver.observe(item);
+  });
 } else {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
@@ -91,6 +102,18 @@ if ("IntersectionObserver" in window) {
 window.setTimeout(() => {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }, 700);
+
+// Scroll chevron fade
+const heroScroll = document.querySelector(".hero-scroll");
+if (heroScroll) {
+  window.addEventListener("scroll", () => {
+    const opacity = Math.max(0, 1 - window.scrollY / 300);
+    heroScroll.style.opacity = opacity;
+    if (opacity <= 0) heroScroll.style.pointerEvents = "none";
+    else heroScroll.style.pointerEvents = "";
+  }, { passive: true });
+}
+
 
 const moveCursor = (event) => {
   pointer.x = event.clientX;
@@ -121,6 +144,17 @@ const moveCursor = (event) => {
 
 const armCursor = () => cursor?.classList.add("is-armed");
 const disarmCursor = () => cursor?.classList.remove("is-armed");
+
+// click / throw animation
+document.addEventListener("pointerdown", () => {
+  if (!cursor) return;
+  cursor.classList.remove("is-clicking");
+  // Force reflow so the animation restarts if clicked rapidly
+  void cursor.offsetWidth;
+  cursor.classList.add("is-clicking");
+  window.setTimeout(() => cursor.classList.remove("is-clicking"), 420);
+});
+
 
 hoverItems.forEach((item) => {
   item.addEventListener("pointerenter", armCursor);
@@ -291,3 +325,51 @@ const depthScene = createDepthScene();
 
 updateScrollState();
 depthScene?.resize();
+
+/* ── Project detail panels ── */
+let savedScrollY = 0;
+
+function openPanel(projectId) {
+  const panel = document.getElementById("panel-" + projectId);
+  if (!panel) return;
+
+  savedScrollY = window.scrollY;
+  panel.removeAttribute("hidden");
+
+  // Let display:block kick in, then slide
+  requestAnimationFrame(() => {
+    panel.scrollTop = 0;
+  });
+
+  document.body.style.overflow = "hidden";
+}
+
+function closePanel() {
+  const openPanels = document.querySelectorAll(".project-panel:not([hidden])");
+  openPanels.forEach(p => {
+    p.setAttribute("hidden", "");
+  });
+  document.body.style.overflow = "";
+  window.scrollTo(0, savedScrollY);
+}
+
+// Open on card click
+document.querySelectorAll("[data-open-project]").forEach(card => {
+  card.addEventListener("click", () => openPanel(card.dataset.openProject));
+  card.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openPanel(card.dataset.openProject);
+    }
+  });
+});
+
+// Close on back button
+document.querySelectorAll("[data-close-project]").forEach(btn => {
+  btn.addEventListener("click", closePanel);
+});
+
+// Close on Escape
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closePanel();
+});

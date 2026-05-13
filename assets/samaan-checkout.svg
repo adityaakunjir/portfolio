@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Samaan checkout</title>
+  <desc id="desc">Checkout screen with order summary and payment methods.</desc>
+  <rect width="900" height="560" fill="#fffaf4"/>
+  <text x="94" y="74" fill="#202124" font-family="Arial, sans-serif" font-size="30" font-weight="800">Checkout</text>
+  <rect x="94" y="112" width="712" height="70" rx="14" fill="#eafff2" stroke="#b8f0ce"/>
+  <text x="124" y="154" fill="#13a052" font-family="Arial, sans-serif" font-size="19" font-weight="700">Free Delivery - arriving in 12 min</text>
+  <rect x="94" y="218" width="712" height="124" rx="16" fill="#fff" stroke="#efded2"/>
+  <text x="126" y="260" fill="#202124" font-family="Arial, sans-serif" font-size="22" font-weight="800">Order Summary</text>
+  <text x="126" y="304" fill="#6b6b6b" font-family="Arial, sans-serif" font-size="18">3 items from Sharma Kirana Shop</text>
+  <rect x="94" y="372" width="712" height="112" rx="16" fill="#fff" stroke="#efded2"/>
+  <text x="126" y="414" fill="#202124" font-family="Arial, sans-serif" font-size="22" font-weight="800">Payment Method</text>
+  <rect x="126" y="436" width="184" height="30" rx="8" fill="#f4f0ff"/>
+  <rect x="334" y="436" width="184" height="30" rx="8" fill="#eef5ff"/>
+  <rect x="574" y="498" width="232" height="46" rx="12" fill="#ff7a2b"/>
+</svg>
