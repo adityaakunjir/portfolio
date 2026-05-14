@@ -1520,9 +1520,9 @@ h3 {
   overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(290px, 0.52fr);
-  gap: clamp(24px, 5vw, 60px);
+  gap: clamp(24px, 4vw, 40px);
   align-items: center;
-  padding: clamp(26px, 5vw, 52px);
+  padding: clamp(24px, 4vw, 40px);
   border-color: rgba(255, 10, 91, 0.28);
   border-radius: 6px;
   background:
@@ -2560,6 +2560,8 @@ h3 {
 
   /* ── Contact: premium treatment ── */
   .contact-panel {
+    padding: 20px 16px;
+    gap: 16px;
     border-radius: 12px;
     background:
       linear-gradient(135deg, rgba(255, 10, 91, 0.12) 0%, rgba(53, 216, 230, 0.06) 100%),
@@ -2569,10 +2571,15 @@ h3 {
 
   .contact-actions .btn-primary.btn-lg {
     grid-column: 1 / -1;
-    min-height: 54px;
-    font-size: 0.88rem;
-    letter-spacing: 0.12em;
-    box-shadow: 0 0 32px rgba(0, 255, 65, 0.3);
+    min-height: 44px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-actions .btn-ghost {
+    min-height: 36px;
+    font-size: 0.65rem;
+    padding: 6px 12px;
   }
 
   /* ── Panel header on mobile ── */
