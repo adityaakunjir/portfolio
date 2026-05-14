@@ -2444,9 +2444,10 @@ h3 {
     letter-spacing: -0.02em;
   }
 
-  /* Hero scroll indicator — hide on mobile (takes space) */
+  /* Hero scroll indicator — shown on mobile as well */
   .hero-scroll {
-    display: none;
+    display: flex;
+    margin-top: 16px;
   }
 
   /* ── Touch targets: minimum 44px ── */
