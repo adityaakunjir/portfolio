@@ -873,8 +873,8 @@ h3 {
 }
 
 .section-heading p:not(.section-kicker),
-.about-copy p,
-.contact-panel p {
+.about-copy p:not(.section-kicker),
+.contact-panel p:not(.section-kicker) {
   color: var(--muted);
   font-size: clamp(0.98rem, 1.6vw, 1.08rem);
 }
@@ -1910,8 +1910,8 @@ h3 {
   }
 
   .section-heading p:not(.section-kicker),
-  .about-copy p,
-  .contact-panel p {
+  .about-copy p:not(.section-kicker),
+  .contact-panel p:not(.section-kicker) {
     font-size: 0.82rem;
     line-height: 1.45;
   }
