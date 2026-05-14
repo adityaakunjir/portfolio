@@ -525,6 +525,8 @@ function initMobileGSAP() {
 
   // Section kickers — slide in from left
   gsap.utils.toArray('.section-kicker, .kicker').forEach(el => {
+    el.style.transition = 'none';
+    el.classList.remove('reveal');
     gsap.fromTo(el,
       { x: -56, opacity: 0 },
       {
@@ -535,6 +537,8 @@ function initMobileGSAP() {
 
   // h2 headings — spring overshoot
   gsap.utils.toArray('.section:not(#contact) h2, .about-copy h2').forEach(el => {
+    el.style.transition = 'none';
+    el.classList.remove('reveal');
     gsap.fromTo(el,
       { y: 48, opacity: 0 },
       {
@@ -547,6 +551,11 @@ function initMobileGSAP() {
   ['.project-grid', '.skill-grid', '.cert-grid', '.timeline'].forEach(sel => {
     const grid = document.querySelector(sel);
     if (!grid) return;
+    grid.classList.remove('reveal');
+    Array.from(grid.children).forEach(child => {
+      child.style.transition = 'none';
+      child.classList.remove('reveal');
+    });
     gsap.fromTo(Array.from(grid.children),
       { y: 60, opacity: 0 },
       {
