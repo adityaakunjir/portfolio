@@ -1,3 +1,7 @@
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 document.documentElement.classList.add("motion-ready");
 
 const nav = document.querySelector("[data-nav]");
@@ -504,6 +508,7 @@ function initMobileLoader(onComplete) {
 
   // Step 4 — remove loader, run callback
   setTimeout(() => {
+    window.scrollTo(0, 0);
     loader.classList.add('loader-hidden');
     setTimeout(() => loader.remove(), 200);
     onComplete?.();
