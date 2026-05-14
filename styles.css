@@ -2178,34 +2178,38 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4px;
-  width: 34px;
-  height: 34px;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  background: rgba(5, 5, 10, 0.55);
-  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  background: rgba(14, 14, 20, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   cursor: pointer;
   z-index: 70;
   flex-shrink: 0;
-  transition: border-color 200ms ease, background 200ms ease;
+  transition: all 300ms ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.nav-hamburger:hover {
-  border-color: rgba(0, 255, 65, 0.4);
-  background: rgba(0, 255, 65, 0.06);
+.nav-hamburger:hover,
+.nav-hamburger:active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
 }
 
 .hamburger-line {
   display: block;
-  width: 14px;
+  width: 18px;
   height: 1.5px;
-  background: var(--text);
+  background: #fff;
   border-radius: 2px;
-  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 200ms ease,
-              width 200ms ease;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 300ms ease,
+              width 300ms ease;
   transform-origin: center;
 }
 
@@ -2242,140 +2246,145 @@ h3 {
 /* ── Drawer panel ── */
 .mobile-drawer {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  top: 16px;
+  right: 16px;
   z-index: 150;
-  width: min(68vw, 240px);
+  width: 165px;
+  height: auto;
   display: flex;
   flex-direction: column;
-  padding: 0;
-  background:
-    linear-gradient(160deg, rgba(18, 16, 26, 0.98), rgba(6, 5, 12, 0.99));
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: -16px 0 48px rgba(0, 0, 0, 0.7);
-  transform: translateX(110%);
+  padding: 6px;
+  background: rgba(14, 14, 20, 0.65);
+  backdrop-filter: blur(32px) saturate(1.2);
+  -webkit-backdrop-filter: blur(32px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: scale(0.9) translateY(-10px);
+  transform-origin: top right;
+  opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition:
-    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0ms 300ms;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: env(safe-area-inset-bottom);
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
 .mobile-drawer.is-open {
-  transform: translateX(0);
+  transform: scale(1) translateY(0);
+  opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transition:
-    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0ms 0ms;
 }
 
 .drawer-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 8px 10px 6px;
+  border-bottom: none;
 }
 
 .drawer-title {
-  color: var(--cyan);
-  font-family: var(--font-heading);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .drawer-close {
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.78rem;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
   cursor: pointer;
-  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+  transition: all 250ms ease;
 }
 
-.drawer-close:hover {
-  border-color: var(--hot);
-  color: var(--hot);
-  background: rgba(255, 10, 91, 0.08);
+.drawer-close:hover,
+.drawer-close:active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transform: scale(1.05);
 }
 
 .drawer-links {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 8px 0;
+  padding: 0 6px;
+  gap: 4px;
 }
 
 .drawer-links a {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.78);
+  gap: 10px;
+  padding: 8px 12px;
+  color: rgba(255, 255, 255, 0.8);
   font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: color 160ms ease, background 160ms ease, padding-left 160ms ease;
-  min-height: 44px;
+  border-radius: 12px;
+  transition: all 250ms ease;
 }
 
 .drawer-links a:hover,
 .drawer-links a:active {
-  color: var(--neon);
-  background: rgba(0, 255, 65, 0.04);
-  padding-left: 22px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  padding-left: 20px;
 }
 
 .drawer-link-num {
-  color: var(--cyan);
-  font-family: var(--font-heading);
+  color: rgba(255, 255, 255, 0.3);
+  font-family: var(--font-body);
   font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  opacity: 0.6;
-  min-width: 18px;
+  font-weight: 600;
+  min-width: 12px;
+  transition: color 250ms ease;
+}
+
+.drawer-links a:hover .drawer-link-num,
+.drawer-links a:active .drawer-link-num {
+  color: var(--neon);
 }
 
 .drawer-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin: 12px 16px 20px;
-  padding: 12px 20px;
-  border: 1px solid var(--neon);
-  border-radius: 6px;
+  gap: 6px;
+  margin: 10px 4px 4px;
+  padding: 10px 12px;
   background: rgba(0, 255, 65, 0.08);
+  border: 1px solid rgba(0, 255, 65, 0.15);
+  border-radius: 100px;
   color: var(--neon);
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: background 200ms ease, box-shadow 200ms ease;
-  box-shadow: 0 0 16px rgba(0, 255, 65, 0.1);
-  min-height: 44px;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .drawer-cta:hover,
 .drawer-cta:active {
-  background: rgba(0, 255, 65, 0.16);
-  box-shadow: 0 0 32px rgba(0, 255, 65, 0.25);
+  background: var(--neon);
+  color: #000;
+  box-shadow: 0 8px 24px rgba(0, 255, 65, 0.25);
+  transform: translateY(-2px);
 }
 
 /* ── Safe area insets (iPhone notch / home bar) ── */
