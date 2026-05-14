@@ -525,8 +525,6 @@ function initMobileGSAP() {
 
   // Section kickers — slide in from left
   gsap.utils.toArray('.section-kicker, .kicker').forEach(el => {
-    el.style.transition = 'none';
-    el.classList.remove('reveal');
     gsap.fromTo(el,
       { x: -56, opacity: 0 },
       {
@@ -537,8 +535,6 @@ function initMobileGSAP() {
 
   // h2 headings — spring overshoot
   gsap.utils.toArray('.section:not(#contact) h2, .about-copy h2').forEach(el => {
-    el.style.transition = 'none';
-    el.classList.remove('reveal');
     gsap.fromTo(el,
       { y: 48, opacity: 0 },
       {
@@ -547,20 +543,29 @@ function initMobileGSAP() {
       });
   });
 
-  // Card grids — staggered fan-in
-  ['.project-grid', '.skill-grid', '.cert-grid', '.timeline'].forEach(sel => {
+  // Card grids — staggered fan-in (Sections 01 and 02)
+  ['.project-grid', '.cert-grid'].forEach(sel => {
     const grid = document.querySelector(sel);
     if (!grid) return;
-    grid.classList.remove('reveal');
-    Array.from(grid.children).forEach(child => {
-      child.style.transition = 'none';
-      child.classList.remove('reveal');
-    });
     gsap.fromTo(Array.from(grid.children),
       { y: 60, opacity: 0 },
       {
         y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.09,
         scrollTrigger: { trigger: grid, start: 'top 85%', once: true }
+      });
+  });
+
+  // Sections 03 and 04 have long text paragraphs above them.
+  // Trigger them very early (top 110%) so they animate in while the user reads the text,
+  // preventing them from appearing 'late' when the user scrolls down.
+  ['.skill-grid', '.timeline'].forEach(sel => {
+    const grid = document.querySelector(sel);
+    if (!grid) return;
+    gsap.fromTo(Array.from(grid.children),
+      { y: 60, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.09,
+        scrollTrigger: { trigger: grid, start: 'top 110%', once: true }
       });
   });
 
