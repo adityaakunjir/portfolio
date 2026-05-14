@@ -2230,11 +2230,13 @@ h3 {
   background: rgba(2, 3, 8, 0.72);
   backdrop-filter: blur(4px);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 320ms ease;
 }
 
 .mobile-drawer-backdrop.is-open {
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* ── Drawer panel ── */
