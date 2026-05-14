@@ -1,663 +1,758 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Aditya Kunjir — .NET Full Stack Developer portfolio featuring ASP.NET Core, Azure, SQL Server, React, and full-stack web projects."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Aditya Kunjir — .NET Full Stack Developer" />
-    <meta property="og:description" content="C# / .NET developer building production-ready web apps with ASP.NET Core, Azure, SQL Server, React & Angular." />
-    <meta property="og:image" content="./preview.png" />
-    <meta property="og:url" content="https://adityakunjir.dev" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>Aditya Kunjir // .NET Full Stack Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="preload" href="assets/hero-poster.jpg" as="image" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="noise" aria-hidden="true"></div>
-    <div class="scanlines" aria-hidden="true"></div>
-    <div class="progress-bar" data-progress aria-hidden="true"></div>
-    <div class="game-cursor" data-cursor aria-hidden="true">
-      <svg class="kunai-svg" viewBox="0 0 60 140" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <!-- Blade left face — bright polished steel -->
-          <linearGradient id="bladeL" x1="0" y1="0" x2="0.8" y2="1">
-            <stop offset="0%"   stop-color="#f0f2f5"/>
-            <stop offset="18%"  stop-color="#dce0e6"/>
-            <stop offset="55%"  stop-color="#b0b8c4"/>
-            <stop offset="100%" stop-color="#7d8694"/>
-          </linearGradient>
-          <!-- Blade right face — darker steel shadow side -->
-          <linearGradient id="bladeR" x1="1" y1="0" x2="0.2" y2="1">
-            <stop offset="0%"   stop-color="#8a929e"/>
-            <stop offset="30%"  stop-color="#5c6370"/>
-            <stop offset="70%"  stop-color="#3d4452"/>
-            <stop offset="100%" stop-color="#2a303c"/>
-          </linearGradient>
-          <!-- Specular flash on blade (radial, top-left origin) -->
-          <radialGradient id="bladeSpec" cx="0.25" cy="0.15" r="0.6" fx="0.2" fy="0.1">
-            <stop offset="0%"  stop-color="#ffffff" stop-opacity="0.85"/>
-            <stop offset="30%" stop-color="#ffffff" stop-opacity="0.25"/>
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-          </radialGradient>
-          <!-- Blade edge highlight -->
-          <linearGradient id="edgeHi" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.95"/>
-            <stop offset="50%"  stop-color="#e0e4ea" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-          </linearGradient>
-          <!-- Guard cross-piece -->
-          <linearGradient id="guardG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#a8adb8"/>
-            <stop offset="40%"  stop-color="#6b7280"/>
-            <stop offset="100%" stop-color="#3d4452"/>
-          </linearGradient>
-          <!-- Handle base -->
-          <linearGradient id="handleG" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#2a2e38"/>
-            <stop offset="25%"  stop-color="#3d4250"/>
-            <stop offset="50%"  stop-color="#2a2e38"/>
-            <stop offset="75%"  stop-color="#1e222c"/>
-            <stop offset="100%" stop-color="#14171f"/>
-          </linearGradient>
-          <!-- Handle wrap band colour -->
-          <linearGradient id="wrapG" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#52586a"/>
-            <stop offset="50%"  stop-color="#7a8194"/>
-            <stop offset="100%" stop-color="#44495a"/>
-          </linearGradient>
-          <!-- Ring metallic -->
-          <linearGradient id="ringG" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"   stop-color="#bcc2cc"/>
-            <stop offset="35%"  stop-color="#8a929e"/>
-            <stop offset="70%"  stop-color="#5c6370"/>
-            <stop offset="100%" stop-color="#3d4452"/>
-          </linearGradient>
-          <!-- Ring specular highlight -->
-          <radialGradient id="ringSpec" cx="0.35" cy="0.3" r="0.4">
-            <stop offset="0%"  stop-color="#ffffff" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-          </radialGradient>
-          <!-- Soft drop shadow for depth -->
-          <filter id="kShadow" x="-20%" y="-10%" width="140%" height="130%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="shadow"/>
-            <feOffset dx="1.5" dy="3" result="offShadow"/>
-            <feFlood flood-color="#000000" flood-opacity="0.35"/>
-            <feComposite in2="offShadow" operator="in" result="shadowed"/>
-            <feMerge>
-              <feMergeNode in="shadowed"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
 
-        <g filter="url(#kShadow)">
-          <!-- ===== BLADE ===== -->
-          <!-- Left face (bright, lit side) -->
-          <polygon points="30,3  16,50  30,46" fill="url(#bladeL)"/>
-          <!-- Right face (shadow side) -->
-          <polygon points="30,3  44,50  30,46" fill="url(#bladeR)"/>
-          <!-- Specular reflection overlay on left face -->
-          <polygon points="30,3  16,50  30,46" fill="url(#bladeSpec)"/>
-          <!-- Centre ridge line -->
-          <line x1="30" y1="3" x2="30" y2="46" stroke="#e2e6ec" stroke-width="0.7" opacity="0.9"/>
-          <!-- Left blade edge highlight -->
-          <line x1="30" y1="4" x2="16" y2="50" stroke="url(#edgeHi)" stroke-width="0.6"/>
-          <!-- Right blade edge (subtle dark line) -->
-          <line x1="30" y1="4" x2="44" y2="50" stroke="#2a303c" stroke-width="0.35" opacity="0.5"/>
-          <!-- Bottom blade edge shadow -->
-          <line x1="16" y1="50" x2="44" y2="50" stroke="#1f2630" stroke-width="0.5" opacity="0.4"/>
-          <!-- Extra: tiny specular dot near tip -->
-          <circle cx="26" cy="16" r="1.8" fill="white" opacity="0.22"/>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Aditya Kunjir — .NET Full Stack Developer portfolio featuring ASP.NET Core, Azure, SQL Server, React, and full-stack web projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Aditya Kunjir — .NET Full Stack Developer" />
+  <meta property="og:description"
+    content="C# / .NET developer building production-ready web apps with ASP.NET Core, Azure, SQL Server, React & Angular." />
+  <meta property="og:image" content="./preview.png" />
+  <meta property="og:url" content="https://adityakunjir.dev" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Aditya Kunjir // .NET Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="preload" href="assets/hero-poster.jpg" as="image" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-          <!-- ===== GUARD / CROSS-PIECE ===== -->
-          <!-- Main guard body -->
-          <rect x="12" y="48" width="36" height="7" rx="2" fill="url(#guardG)"/>
-          <!-- Top highlight bevel -->
-          <rect x="12" y="48" width="36" height="2.2" rx="1.5" fill="#c8cdd6" opacity="0.35"/>
-          <!-- Bottom shadow bevel -->
-          <rect x="12" y="53" width="36" height="2" rx="1" fill="#111620" opacity="0.35"/>
-          <!-- Guard left/right chamfer highlights -->
-          <line x1="12" y1="49" x2="12" y2="55" stroke="#9ca3af" stroke-width="0.5" opacity="0.3"/>
-          <line x1="48" y1="49" x2="48" y2="55" stroke="#2a303c" stroke-width="0.5" opacity="0.3"/>
-
-          <!-- ===== HANDLE ===== -->
-          <!-- Base handle body -->
-          <rect x="22" y="55" width="16" height="45" rx="2.5" fill="url(#handleG)"/>
-          <!-- Left highlight strip (cylindrical illusion) -->
-          <rect x="22" y="55" width="4" height="45" rx="1.5" fill="#4b5260" opacity="0.35"/>
-          <!-- Right dark edge -->
-          <rect x="35" y="55" width="3" height="45" rx="1" fill="#0d1018" opacity="0.25"/>
-
-          <!-- Wrap bands (diagonal, tighter spacing for detail) -->
-          <line x1="21.5" y1="60"  x2="38.5" y2="57.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-          <line x1="21.5" y1="65"  x2="38.5" y2="62.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-          <line x1="21.5" y1="70"  x2="38.5" y2="67.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-          <line x1="21.5" y1="75"  x2="38.5" y2="72.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-          <line x1="21.5" y1="80"  x2="38.5" y2="77.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-          <line x1="21.5" y1="85"  x2="38.5" y2="82.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-          <line x1="21.5" y1="90"  x2="38.5" y2="87.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-          <line x1="21.5" y1="95"  x2="38.5" y2="92.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
-          <!-- Wrap band specular highlights (every other band) -->
-          <line x1="23" y1="60"  x2="30" y2="58.5" stroke="white" stroke-width="0.4" opacity="0.2"/>
-          <line x1="23" y1="70"  x2="30" y2="68.5" stroke="white" stroke-width="0.4" opacity="0.2"/>
-          <line x1="23" y1="80"  x2="30" y2="78.5" stroke="white" stroke-width="0.4" opacity="0.2"/>
-          <line x1="23" y1="90"  x2="30" y2="88.5" stroke="white" stroke-width="0.4" opacity="0.2"/>
-
-          <!-- ===== POMMEL RING ===== -->
-          <!-- Main ring body -->
-          <circle cx="30" cy="114" r="10" fill="none" stroke="url(#ringG)" stroke-width="4"/>
-          <!-- Ring specular highlight (top-left arc) -->
-          <path d="M22,108 A10,10 0 0,1 34,106" fill="none" stroke="#e0e4ea" stroke-width="1.2" opacity="0.5" stroke-linecap="round"/>
-          <!-- Ring inner shadow (bottom-right) -->
-          <path d="M38,118 A10,10 0 0,1 24,122" fill="none" stroke="#111620" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
-          <!-- Ring inner edge -->
-          <circle cx="30" cy="114" r="6.5" fill="none" stroke="#3d4452" stroke-width="0.5" opacity="0.4"/>
-          <!-- Specular dot on ring -->
-          <circle cx="24" cy="108" r="1.2" fill="white" opacity="0.3"/>
-        </g>
-      </svg>
-      <div class="kunai-burst"></div>
+<body>
+  <!-- ── Mobile Cinematic Loader ── -->
+  <div id="mobile-loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-ak-mark">AK</div>
+      <p class="loader-jp" id="loader-jp"></p>
     </div>
+    <div class="loader-blade"></div>
+  </div>
+  <!-- ── Glitch flash overlay ── -->
+  <div id="glitch-flash" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="progress-bar" data-progress aria-hidden="true"></div>
+  <div class="game-cursor" data-cursor aria-hidden="true">
+    <svg class="kunai-svg" viewBox="0 0 60 140" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Blade left face — bright polished steel -->
+        <linearGradient id="bladeL" x1="0" y1="0" x2="0.8" y2="1">
+          <stop offset="0%" stop-color="#f0f2f5" />
+          <stop offset="18%" stop-color="#dce0e6" />
+          <stop offset="55%" stop-color="#b0b8c4" />
+          <stop offset="100%" stop-color="#7d8694" />
+        </linearGradient>
+        <!-- Blade right face — darker steel shadow side -->
+        <linearGradient id="bladeR" x1="1" y1="0" x2="0.2" y2="1">
+          <stop offset="0%" stop-color="#8a929e" />
+          <stop offset="30%" stop-color="#5c6370" />
+          <stop offset="70%" stop-color="#3d4452" />
+          <stop offset="100%" stop-color="#2a303c" />
+        </linearGradient>
+        <!-- Specular flash on blade (radial, top-left origin) -->
+        <radialGradient id="bladeSpec" cx="0.25" cy="0.15" r="0.6" fx="0.2" fy="0.1">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+          <stop offset="30%" stop-color="#ffffff" stop-opacity="0.25" />
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+        </radialGradient>
+        <!-- Blade edge highlight -->
+        <linearGradient id="edgeHi" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+          <stop offset="50%" stop-color="#e0e4ea" stop-opacity="0.5" />
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+        </linearGradient>
+        <!-- Guard cross-piece -->
+        <linearGradient id="guardG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#a8adb8" />
+          <stop offset="40%" stop-color="#6b7280" />
+          <stop offset="100%" stop-color="#3d4452" />
+        </linearGradient>
+        <!-- Handle base -->
+        <linearGradient id="handleG" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#2a2e38" />
+          <stop offset="25%" stop-color="#3d4250" />
+          <stop offset="50%" stop-color="#2a2e38" />
+          <stop offset="75%" stop-color="#1e222c" />
+          <stop offset="100%" stop-color="#14171f" />
+        </linearGradient>
+        <!-- Handle wrap band colour -->
+        <linearGradient id="wrapG" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#52586a" />
+          <stop offset="50%" stop-color="#7a8194" />
+          <stop offset="100%" stop-color="#44495a" />
+        </linearGradient>
+        <!-- Ring metallic -->
+        <linearGradient id="ringG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#bcc2cc" />
+          <stop offset="35%" stop-color="#8a929e" />
+          <stop offset="70%" stop-color="#5c6370" />
+          <stop offset="100%" stop-color="#3d4452" />
+        </linearGradient>
+        <!-- Ring specular highlight -->
+        <radialGradient id="ringSpec" cx="0.35" cy="0.3" r="0.4">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.7" />
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+        </radialGradient>
+        <!-- Soft drop shadow for depth -->
+        <filter id="kShadow" x="-20%" y="-10%" width="140%" height="130%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="shadow" />
+          <feOffset dx="1.5" dy="3" result="offShadow" />
+          <feFlood flood-color="#000000" flood-opacity="0.35" />
+          <feComposite in2="offShadow" operator="in" result="shadowed" />
+          <feMerge>
+            <feMergeNode in="shadowed" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
 
-    <header class="site-nav" data-nav>
-      <a class="brand" href="#top" aria-label="Aditya Kunjir home">
-        <span class="brand-mark">AK</span>
-        <span class="brand-copy">
-          <span class="brand-word">ADITYA KUNJIR</span>
-          <span class="brand-subtitle"><span class="blink-cursor">//</span> 未来を構築する</span>
-        </span>
-      </a>
+      <g filter="url(#kShadow)">
+        <!-- ===== BLADE ===== -->
+        <!-- Left face (bright, lit side) -->
+        <polygon points="30,3  16,50  30,46" fill="url(#bladeL)" />
+        <!-- Right face (shadow side) -->
+        <polygon points="30,3  44,50  30,46" fill="url(#bladeR)" />
+        <!-- Specular reflection overlay on left face -->
+        <polygon points="30,3  16,50  30,46" fill="url(#bladeSpec)" />
+        <!-- Centre ridge line -->
+        <line x1="30" y1="3" x2="30" y2="46" stroke="#e2e6ec" stroke-width="0.7" opacity="0.9" />
+        <!-- Left blade edge highlight -->
+        <line x1="30" y1="4" x2="16" y2="50" stroke="url(#edgeHi)" stroke-width="0.6" />
+        <!-- Right blade edge (subtle dark line) -->
+        <line x1="30" y1="4" x2="44" y2="50" stroke="#2a303c" stroke-width="0.35" opacity="0.5" />
+        <!-- Bottom blade edge shadow -->
+        <line x1="16" y1="50" x2="44" y2="50" stroke="#1f2630" stroke-width="0.5" opacity="0.4" />
+        <!-- Extra: tiny specular dot near tip -->
+        <circle cx="26" cy="16" r="1.8" fill="white" opacity="0.22" />
 
-      <nav class="site-links" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#about">Experience</a>
-        <a href="#contact">Contact</a>
-      </nav>
+        <!-- ===== GUARD / CROSS-PIECE ===== -->
+        <!-- Main guard body -->
+        <rect x="12" y="48" width="36" height="7" rx="2" fill="url(#guardG)" />
+        <!-- Top highlight bevel -->
+        <rect x="12" y="48" width="36" height="2.2" rx="1.5" fill="#c8cdd6" opacity="0.35" />
+        <!-- Bottom shadow bevel -->
+        <rect x="12" y="53" width="36" height="2" rx="1" fill="#111620" opacity="0.35" />
+        <!-- Guard left/right chamfer highlights -->
+        <line x1="12" y1="49" x2="12" y2="55" stroke="#9ca3af" stroke-width="0.5" opacity="0.3" />
+        <line x1="48" y1="49" x2="48" y2="55" stroke="#2a303c" stroke-width="0.5" opacity="0.3" />
 
-      <a
-        class="nav-cta nav-cta-desktop"
-        href="assets/aditya-kunjir-resume.pdf"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <span aria-hidden="true">></span>
-        Resume
-      </a>
+        <!-- ===== HANDLE ===== -->
+        <!-- Base handle body -->
+        <rect x="22" y="55" width="16" height="45" rx="2.5" fill="url(#handleG)" />
+        <!-- Left highlight strip (cylindrical illusion) -->
+        <rect x="22" y="55" width="4" height="45" rx="1.5" fill="#4b5260" opacity="0.35" />
+        <!-- Right dark edge -->
+        <rect x="35" y="55" width="3" height="45" rx="1" fill="#0d1018" opacity="0.25" />
 
-      <button class="nav-hamburger" data-hamburger aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-    </header>
+        <!-- Wrap bands (diagonal, tighter spacing for detail) -->
+        <line x1="21.5" y1="60" x2="38.5" y2="57.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.7" />
+        <line x1="21.5" y1="65" x2="38.5" y2="62.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.7" />
+        <line x1="21.5" y1="70" x2="38.5" y2="67.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.7" />
+        <line x1="21.5" y1="75" x2="38.5" y2="72.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.7" />
+        <line x1="21.5" y1="80" x2="38.5" y2="77.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.7" />
+        <line x1="21.5" y1="85" x2="38.5" y2="82.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.7" />
+        <line x1="21.5" y1="90" x2="38.5" y2="87.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.7" />
+        <line x1="21.5" y1="95" x2="38.5" y2="92.5" stroke="url(#wrapG)" stroke-width="1.6" stroke-linecap="round"
+          opacity="0.7" />
+        <!-- Wrap band specular highlights (every other band) -->
+        <line x1="23" y1="60" x2="30" y2="58.5" stroke="white" stroke-width="0.4" opacity="0.2" />
+        <line x1="23" y1="70" x2="30" y2="68.5" stroke="white" stroke-width="0.4" opacity="0.2" />
+        <line x1="23" y1="80" x2="30" y2="78.5" stroke="white" stroke-width="0.4" opacity="0.2" />
+        <line x1="23" y1="90" x2="30" y2="88.5" stroke="white" stroke-width="0.4" opacity="0.2" />
 
-    <!-- Mobile Navigation Drawer -->
-    <div class="mobile-drawer-backdrop" data-drawer-backdrop aria-hidden="true"></div>
-    <nav class="mobile-drawer" id="mobile-drawer" data-drawer aria-label="Mobile navigation">
-      <div class="drawer-header">
-        <span class="drawer-title">Navigation</span>
-        <button class="drawer-close" data-drawer-close aria-label="Close menu">✕</button>
-      </div>
-      <div class="drawer-links">
-        <a href="#projects" data-drawer-link>
-          <span class="drawer-link-num">01</span>
-          <span>Projects</span>
-        </a>
-        <a href="#certificates" data-drawer-link>
-          <span class="drawer-link-num">02</span>
-          <span>Certificates</span>
-        </a>
-        <a href="#skills" data-drawer-link>
-          <span class="drawer-link-num">03</span>
-          <span>Skills</span>
-        </a>
-        <a href="#about" data-drawer-link>
-          <span class="drawer-link-num">04</span>
-          <span>Experience</span>
-        </a>
-        <a href="#contact" data-drawer-link>
-          <span class="drawer-link-num">05</span>
-          <span>Contact</span>
-        </a>
-      </div>
-      <a class="drawer-cta" href="assets/aditya-kunjir-resume.pdf" target="_blank" rel="noreferrer">
-        <span aria-hidden="true">></span> Resume
-      </a>
+        <!-- ===== POMMEL RING ===== -->
+        <!-- Main ring body -->
+        <circle cx="30" cy="114" r="10" fill="none" stroke="url(#ringG)" stroke-width="4" />
+        <!-- Ring specular highlight (top-left arc) -->
+        <path d="M22,108 A10,10 0 0,1 34,106" fill="none" stroke="#e0e4ea" stroke-width="1.2" opacity="0.5"
+          stroke-linecap="round" />
+        <!-- Ring inner shadow (bottom-right) -->
+        <path d="M38,118 A10,10 0 0,1 24,122" fill="none" stroke="#111620" stroke-width="1" opacity="0.35"
+          stroke-linecap="round" />
+        <!-- Ring inner edge -->
+        <circle cx="30" cy="114" r="6.5" fill="none" stroke="#3d4452" stroke-width="0.5" opacity="0.4" />
+        <!-- Specular dot on ring -->
+        <circle cx="24" cy="108" r="1.2" fill="white" opacity="0.3" />
+      </g>
+    </svg>
+    <div class="kunai-burst"></div>
+  </div>
+
+  <header class="site-nav" data-nav>
+    <a class="brand" href="#top" aria-label="Aditya Kunjir home">
+      <span class="brand-mark">AK</span>
+      <span class="brand-copy">
+        <span class="brand-word">ADITYA KUNJIR</span>
+        <span class="brand-subtitle"><span class="blink-cursor">//</span> 未来を構築する</span>
+      </span>
+    </a>
+
+    <nav class="site-links" aria-label="Primary navigation">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">Experience</a>
+      <a href="#contact">Contact</a>
     </nav>
 
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-         <video
-          class="hero-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="auto"
-          poster="assets/hero-poster.jpg"
-          aria-hidden="true"
-        >
-          <source src="assets/hero-video.webm" type="video/webm" />
-        </video>
-        <canvas class="depth-canvas" data-depth-scene aria-hidden="true"></canvas>
-        <div class="hero-grid" aria-hidden="true"></div>
-        <div class="hero-glow" aria-hidden="true"></div>
+    <a class="nav-cta nav-cta-desktop" href="assets/aditya-kunjir-resume.pdf" target="_blank" rel="noreferrer">
+      <span aria-hidden="true">></span>
+      Resume
+    </a>
 
-        <div class="hero-content reveal">
-          <p class="kicker">.NET FULL STACK DEVELOPER</p>
-          <h1 id="hero-title" class="glitch-title" data-depth="10">
-            <span data-text="SOFTWARE">SOFTWARE</span>
-            <span data-text="DEVELOPER.">DEVELOPER.</span>
-          </h1>
-          <p class="hero-stack">
-            .NET &bull; ASP.NET Core &bull; Azure &bull; SQL Server &bull; React &bull; Angular
-          </p>
-          <p class="hero-location">
-            <span class="live-dot" aria-hidden="true"></span>
-            Pune / Remote
-          </p>
+    <button class="nav-hamburger" data-hamburger aria-label="Open menu" aria-expanded="false"
+      aria-controls="mobile-drawer">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </header>
 
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="btn btn-primary" href="#projects">
-              <span aria-hidden="true">&gt;</span>
-              View Projects
-            </a>
-          </div>
-          <div class="hero-scroll" aria-hidden="true">
-            <span class="scroll-chevron"></span>
-            <span class="scroll-label">SCROLL</span>
-          </div>
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer-backdrop" data-drawer-backdrop aria-hidden="true"></div>
+  <nav class="mobile-drawer" id="mobile-drawer" data-drawer aria-label="Mobile navigation">
+    <div class="drawer-header">
+      <span class="drawer-title">Navigation</span>
+      <button class="drawer-close" data-drawer-close aria-label="Close menu">✕</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#projects" data-drawer-link>
+        <span class="drawer-link-num">01</span>
+        <span>Projects</span>
+      </a>
+      <a href="#certificates" data-drawer-link>
+        <span class="drawer-link-num">02</span>
+        <span>Certificates</span>
+      </a>
+      <a href="#skills" data-drawer-link>
+        <span class="drawer-link-num">03</span>
+        <span>Skills</span>
+      </a>
+      <a href="#about" data-drawer-link>
+        <span class="drawer-link-num">04</span>
+        <span>Experience</span>
+      </a>
+      <a href="#contact" data-drawer-link>
+        <span class="drawer-link-num">05</span>
+        <span>Contact</span>
+      </a>
+    </div>
+    <a class="drawer-cta" href="assets/aditya-kunjir-resume.pdf" target="_blank" rel="noreferrer">
+      <span aria-hidden="true">></span> Resume
+    </a>
+  </nav>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg"
+        aria-hidden="true">
+        <source src="assets/hero-video.webm" type="video/webm" />
+      </video>
+      <canvas class="depth-canvas" data-depth-scene aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+
+      <div class="hero-content reveal">
+        <p class="kicker">.NET FULL STACK DEVELOPER</p>
+        <h1 id="hero-title" class="glitch-title" data-depth="10">
+          <span data-text="SOFTWARE">SOFTWARE</span>
+          <span data-text="DEVELOPER.">DEVELOPER.</span>
+        </h1>
+        <p class="hero-stack">
+          .NET &bull; ASP.NET Core &bull; Azure &bull; SQL Server &bull; React &bull; Angular
+        </p>
+        <p class="hero-location">
+          <span class="live-dot" aria-hidden="true"></span>
+          Pune / Remote
+        </p>
+
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="btn btn-primary" href="#projects">
+            <span aria-hidden="true">&gt;</span>
+            View Projects
+          </a>
         </div>
-
-      </section>
-
-      <section class="section projects-section" id="projects" aria-labelledby="projects-title">
-        <div class="section-inner">
-          <div class="section-heading reveal">
-            <p class="section-kicker">01 // PROJECTS</p>
-            <h2 id="projects-title">What I've built.</h2>
-          </div>
-
-          <div class="project-grid">
-
-            <article class="project-card project-featured reveal" data-open-project="samaan" role="button" tabindex="0" aria-label="Open Samaan project details">
-              <span class="featured-badge">★ FEATURED</span>
-              <div class="media-frame">
-                <img src="assets/samaan-home.svg" alt="Samaan grocery delivery platform" width="900" height="560" />
-              </div>
-              <div class="card-body">
-                <p class="card-index">01 //</p>
-                <h3>Samaan — Grocery Delivery Platform</h3>
-                <p>Multi-role hyperlocal grocery delivery with Customer &amp; Merchant apps. ASP.NET Core (.NET 8), Azure SQL, JWT auth.</p>
-                <ul class="tag-list"><li>.NET 8</li><li>JWT</li><li>Azure SQL</li><li>EF Core</li><li>Swagger</li></ul>
-                <span class="card-cta">View Project →</span>
-              </div>
-            </article>
-
-            <article class="project-card reveal" data-open-project="tayan" role="button" tabindex="0" aria-label="Open Tayan Solutions project details">
-              <div class="media-frame">
-                <img src="assets/project-02.svg" alt="Tayan Solutions OJT" width="900" height="560" />
-              </div>
-              <div class="card-body">
-                <p class="card-index">02 //</p>
-                <h3>Tayan Solutions OJT</h3>
-                <p>On-the-job training building responsive web pages, Figma layouts, and user flow testing.</p>
-                <ul class="tag-list"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Figma</li></ul>
-                <span class="card-cta">View Project →</span>
-              </div>
-            </article>
-
-            <article class="project-card reveal" data-open-project="nlp" role="button" tabindex="0" aria-label="Open NLP research project details">
-              <div class="media-frame">
-                <img src="assets/project-03.svg" alt="NLP e-learning ad research" width="900" height="560" />
-              </div>
-              <div class="card-body">
-                <p class="card-index">03 //</p>
-                <h3>NLP E-learning Ad Research</h3>
-                <p>Published research on ad content optimization for e-learning mobile apps using NLP.</p>
-                <ul class="tag-list"><li>NLP</li><li>Research</li><li>E-learning</li></ul>
-                <span class="card-cta">View Project →</span>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════════════════════════════════════════ -->
-      <!-- PROJECT DETAIL PANELS (hidden, shown on click)    -->
-      <!-- ══════════════════════════════════════════════════ -->
-
-      <!-- Samaan Detail Panel -->
-      <div class="project-panel" id="panel-samaan" role="dialog" aria-modal="true" aria-label="Samaan project detail" hidden>
-        <div class="panel-inner">
-          <div class="panel-header">
-            <button class="panel-back" data-close-project aria-label="Back to projects">
-              <span aria-hidden="true">←</span> Back
-            </button>
-            <div class="panel-links">
-              <a class="text-link" href="https://samaan-api.azurewebsites.net/swagger" target="_blank" rel="noreferrer">Live API →</a>
-              <a class="text-link" href="https://github.com/adityaakunjir/samaan-api" target="_blank" rel="noreferrer">Backend →</a>
-              <a class="text-link" href="https://github.com/adityaakunjir/samaan-merchant" target="_blank" rel="noreferrer">Merchant →</a>
-              <a class="text-link" href="https://github.com/adityaakunjir/samaan-customer" target="_blank" rel="noreferrer">Customer →</a>
-            </div>
-          </div>
-
-          <div class="panel-hero">
-            <img src="assets/samaan-home.svg" alt="Samaan home screen" class="panel-hero-img" />
-            <div class="panel-hero-info">
-              <p class="section-kicker">01 // FEATURED PROJECT</p>
-              <h2>Samaan — Hyperlocal Grocery Delivery Platform</h2>
-              <p>A multi-role grocery delivery system connecting customers with nearby kirana stores. Includes Customer &amp; Merchant apps with real-time order tracking, product management, and role-based access.</p>
-              <p>Built with ASP.NET Core (.NET 8) Web API, Entity Framework Core, Azure SQL, and JWT authentication. Deployed on Azure App Service with Swagger API documentation.</p>
-              <ul class="tag-list"><li>.NET 8</li><li>ASP.NET Core</li><li>JWT</li><li>Azure SQL</li><li>EF Core</li><li>Swagger</li><li>Azure</li><li>REST API</li></ul>
-            </div>
-          </div>
-
-          <div class="panel-screenshots">
-            <p class="media-list-label">// SCREENSHOTS &amp; FEATURES</p>
-
-            <div class="media-item">
-              <img src="assets/samaan-login.svg" alt="Customer login screen" width="200" height="130" />
-              <div class="media-info">
-                <h4>Customer Authentication — Login &amp; Onboarding</h4>
-                <p>Secure authentication flow with email/phone login, demo credentials, OTP verification, and session-based access to personalized shopping and order history.</p>
-              </div>
-            </div>
-
-            <div class="media-item">
-              <img src="assets/samaan-home.svg" alt="Product discovery home screen" width="200" height="130" />
-              <div class="media-info">
-                <h4>Product Discovery &amp; Nearby Stores</h4>
-                <p>Personalized home experience showing nearby kirana stores, categories, smart recommendations, and real-time delivery estimates.</p>
-              </div>
-            </div>
-
-            <div class="media-item">
-              <img src="assets/samaan-cart.svg" alt="Cart management screen" width="200" height="130" />
-              <div class="media-info">
-                <h4>Cart Management</h4>
-                <p>Dynamic cart with quantity controls, pricing calculation, delivery fee logic, and promo code support.</p>
-              </div>
-            </div>
-
-            <div class="media-item">
-              <img src="assets/samaan-checkout.svg" alt="Checkout and payments screen" width="200" height="130" />
-              <div class="media-info">
-                <h4>Checkout &amp; Payments</h4>
-                <p>End-to-end checkout flow with address selection, order summary, and multiple payment options including UPI and credit card.</p>
-              </div>
-            </div>
-
-            <div class="media-item">
-              <img src="assets/samaan-orders.svg" alt="Order history and tracking screen" width="200" height="130" />
-              <div class="media-info">
-                <h4>Order History &amp; Tracking</h4>
-                <p>Order lifecycle tracking with active and completed orders, reorder functionality, and real-time status updates.</p>
-              </div>
-            </div>
-
-            <div class="media-item">
-              <img src="assets/samaan-merchant-landing.svg" alt="Merchant landing page" width="200" height="130" />
-              <div class="media-info">
-                <h4>Merchant Landing Page — Partner Onboarding</h4>
-                <p>Public-facing merchant portal introducing the platform, benefits, and onboarding flow for local store partners before authentication.</p>
-              </div>
-            </div>
-
-            <div class="media-item">
-              <img src="assets/samaan-merchant-dashboard.svg" alt="Merchant dashboard" width="200" height="130" />
-              <div class="media-info">
-                <h4>Merchant Dashboard</h4>
-                <p>Centralized dashboard for merchants to manage their store, view analytics, track revenue, and handle orders from a single view.</p>
-              </div>
-            </div>
-
-            <div class="media-item">
-              <img src="assets/samaan-merchant-products.svg" alt="Product and inventory management" width="200" height="130" />
-              <div class="media-info">
-                <h4>Product &amp; Inventory Management</h4>
-                <p>Merchant interface for managing product catalogue, stock levels, pricing, and availability with category-based organization.</p>
-              </div>
-            </div>
-
-            <div class="media-item">
-              <img src="assets/samaan-merchant-notifications.svg" alt="Order notifications" width="200" height="130" />
-              <div class="media-info">
-                <h4>Order Notifications &amp; Management</h4>
-                <p>Real-time incoming order alerts for merchants with accept/reject controls and order status progression workflow.</p>
-              </div>
-            </div>
-          </div>
+        <div class="hero-scroll" aria-hidden="true">
+          <span class="scroll-chevron"></span>
+          <span class="scroll-label">SCROLL</span>
         </div>
       </div>
 
-      <!-- Tayan Detail Panel -->
-      <div class="project-panel" id="panel-tayan" role="dialog" aria-modal="true" aria-label="Tayan project detail" hidden>
-        <div class="panel-inner">
-          <div class="panel-header">
-            <button class="panel-back" data-close-project aria-label="Back to projects">
-              <span aria-hidden="true">←</span> Back
-            </button>
-          </div>
-          <div class="panel-hero">
-            <img src="assets/project-02.svg" alt="Tayan Solutions" class="panel-hero-img" />
-            <div class="panel-hero-info">
-              <p class="section-kicker">02 // PROJECT</p>
-              <h2>Tayan Solutions OJT</h2>
-              <p>Project-based on-the-job training focused on building responsive web pages, Figma/Photoshop layouts, and user flow testing for real client projects.</p>
-              <p class="project-note">Jan 2024 – Mar 2024</p>
-              <ul class="tag-list"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Figma</li><li>Photoshop</li></ul>
+    </section>
+
+    <section class="section projects-section" id="projects" aria-labelledby="projects-title">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="section-kicker">01 // PROJECTS</p>
+          <h2 id="projects-title">What I've built.</h2>
+        </div>
+
+        <div class="project-grid">
+
+          <article class="project-card project-featured reveal" data-open-project="samaan" role="button" tabindex="0"
+            aria-label="Open Samaan project details">
+            <span class="featured-badge">★ FEATURED</span>
+            <div class="media-frame">
+              <img src="assets/samaan-home.svg" alt="Samaan grocery delivery platform" width="900" height="560" />
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- NLP Detail Panel -->
-      <div class="project-panel" id="panel-nlp" role="dialog" aria-modal="true" aria-label="NLP research project detail" hidden>
-        <div class="panel-inner">
-          <div class="panel-header">
-            <button class="panel-back" data-close-project aria-label="Back to projects">
-              <span aria-hidden="true">←</span> Back
-            </button>
-            <div class="panel-links">
-              <a class="text-link" href="https://www.jetir.org/view?paper=JETIR2503359" target="_blank" rel="noreferrer">Read Publication →</a>
+            <div class="card-body">
+              <p class="card-index">01 //</p>
+              <h3>Samaan — Grocery Delivery Platform</h3>
+              <p>Multi-role hyperlocal grocery delivery with Customer &amp; Merchant apps. ASP.NET Core (.NET 8), Azure
+                SQL, JWT auth.</p>
+              <ul class="tag-list">
+                <li>.NET 8</li>
+                <li>JWT</li>
+                <li>Azure SQL</li>
+                <li>EF Core</li>
+                <li>Swagger</li>
+              </ul>
+              <span class="card-cta">View Project →</span>
             </div>
-          </div>
-          <div class="panel-hero">
-            <img src="assets/project-03.svg" alt="NLP Research" class="panel-hero-img" />
-            <div class="panel-hero-info">
-              <p class="section-kicker">03 // RESEARCH</p>
-              <h2>NLP E-learning Ad Research</h2>
-              <p>Published research on ad content optimization for e-learning mobile applications using natural language processing techniques. Focused on improving ad relevance and engagement through NLP-driven content analysis.</p>
-              <ul class="tag-list"><li>NLP</li><li>Research</li><li>E-learning</li><li>Published</li></ul>
+          </article>
+
+          <article class="project-card reveal" data-open-project="tayan" role="button" tabindex="0"
+            aria-label="Open Tayan Solutions project details">
+            <div class="media-frame">
+              <img src="assets/project-02.svg" alt="Tayan Solutions OJT" width="900" height="560" />
             </div>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- ── CERTIFICATES ── -->
-      <section class="section certs-section" id="certificates" aria-labelledby="certs-title">
-        <div class="section-inner">
-          <div class="section-heading reveal">
-            <p class="section-kicker">02 // CREDENTIALS</p>
-            <h2 id="certs-title">Certified &amp; verified.</h2>
-          </div>
-
-          <div class="cert-grid">
-            <article class="cert-card reveal">
-              <div class="cert-img-wrap">
-                <img src="assets/cert-azure-fundamentals.svg" alt="Microsoft Azure Fundamentals AZ-900 certificate" width="320" height="220" />
-              </div>
-              <div class="cert-body">
-                <p class="cert-issuer">Microsoft</p>
-                <h3 class="cert-name">Azure Fundamentals</h3>
-                <p class="cert-id">AZ-900</p>
-              </div>
-            </article>
-
-            <article class="cert-card reveal">
-              <div class="cert-img-wrap">
-                <img src="assets/cert-dotnet-fundamentals.svg" alt=".NET Fundamentals certificate" width="320" height="220" />
-              </div>
-              <div class="cert-body">
-                <p class="cert-issuer">Microsoft</p>
-                <h3 class="cert-name">.NET Fundamentals</h3>
-                <p class="cert-id">Microsoft Learn</p>
-              </div>
-            </article>
-
-            <article class="cert-card reveal">
-              <div class="cert-img-wrap">
-                <img src="assets/cert-csharp-oop.svg" alt="Advanced C# OOP certificate" width="320" height="220" />
-              </div>
-              <div class="cert-body">
-                <p class="cert-issuer">Udemy</p>
-                <h3 class="cert-name">Advanced C# OOP</h3>
-                <p class="cert-id">Object-Oriented Programming</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-
-      <section class="section skills-section" id="skills" aria-labelledby="skills-title">
-        <div class="section-inner split-layout">
-          <div class="section-heading reveal">
-            <p class="section-kicker">03 // SKILLS</p>
-            <h2 id="skills-title">What I work with.</h2>
-            <p>
-              Strong in C# and ASP.NET Core. I've built full APIs, handled auth,
-              wired up databases, and shipped to Azure — with enough frontend
-              range to not need a separate dev for UI.
-            </p>
-          </div>
-
-          <div class="skill-grid">
-            <article class="skill-panel reveal">
-              <span><b class="skill-icon">C#</b> Backend</span>
-              <h3>.NET API development</h3>
-              <p>C#, .NET 8, ASP.NET Core Web API, EF Core, LINQ, Swagger. I structure things cleanly — controllers, services, DTOs, the works.</p>
-              <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="--fill:92%"></div></div>
-            </article>
-            <article class="skill-panel reveal">
-              <span><b class="skill-icon">JS</b> Frontend</span>
-              <h3>Web interfaces</h3>
-              <p>JavaScript, HTML, CSS, React, Angular. Enough to build real screens, not just pixel-push someone else's designs.</p>
-              <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="--fill:78%"></div></div>
-            </article>
-            <article class="skill-panel reveal">
-              <span><b class="skill-icon">SQL</b> Data</span>
-              <h3>Databases</h3>
-              <p>SQL Server and Azure SQL, modelled through EF Core. Comfortable writing queries, setting up relations, and keeping data clean.</p>
-              <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="--fill:85%"></div></div>
-            </article>
-            <article class="skill-panel reveal">
-              <span><b class="skill-icon">AZ</b> Cloud</span>
-              <h3>Azure & security</h3>
-              <p>Azure App Service, Static Web Apps, JWT auth, role-based access, and password hashing. Deployed real projects — not just tutorials.</p>
-              <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="--fill:80%"></div></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section about-section" id="about" aria-labelledby="about-title">
-        <div class="section-inner about-grid">
-          <div class="about-copy reveal">
-            <p class="section-kicker">04 // EXPERIENCE</p>
-            <h2 id="about-title">Where I've been.</h2>
-            <p>
-              M.Sc. Computer Science grad from Pune. I spend most of my time
-              in the backend — C#, .NET, SQL Server, Azure — but I can get a
-              frontend screen working when I need to.
-            </p>
-            <p>
-              Right now I'm actively building Samaan and looking for a dev
-              team where I can ship real things, not just maintain legacy code.
-            </p>
-          </div>
-
-          <div class="timeline reveal" aria-label="Developer timeline">
-            <article>
-              <span>Dec 2025 - Present</span>
-              <h3>Samaan full-stack platform</h3>
-              <p>Built customer and merchant apps with .NET 8, Azure SQL, JWT auth, order flows, Swagger, and Azure deployment.</p>
-            </article>
-            <article>
-              <span>Jul 2023 - Jun 2025</span>
-              <h3>M.Sc. Computer Science</h3>
-              <p>Completed postgraduate study at PVG's College of Science & Commerce after a B.Sc. in Computer Science.</p>
-            </article>
-            <article>
-              <span>Jan 2024 - Mar 2024</span>
+            <div class="card-body">
+              <p class="card-index">02 //</p>
               <h3>Tayan Solutions OJT</h3>
-              <p>Worked on web pages, UI layouts, responsive improvements, and testing for login, browsing, cart, and order flows.</p>
-            </article>
+              <p>On-the-job training building responsive web pages, Figma layouts, and user flow testing.</p>
+              <ul class="tag-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Figma</li>
+              </ul>
+              <span class="card-cta">View Project →</span>
+            </div>
+          </article>
 
+          <article class="project-card reveal" data-open-project="nlp" role="button" tabindex="0"
+            aria-label="Open NLP research project details">
+            <div class="media-frame">
+              <img src="assets/project-03.svg" alt="NLP e-learning ad research" width="900" height="560" />
+            </div>
+            <div class="card-body">
+              <p class="card-index">03 //</p>
+              <h3>NLP E-learning Ad Research</h3>
+              <p>Published research on ad content optimization for e-learning mobile apps using NLP.</p>
+              <ul class="tag-list">
+                <li>NLP</li>
+                <li>Research</li>
+                <li>E-learning</li>
+              </ul>
+              <span class="card-cta">View Project →</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- PROJECT DETAIL PANELS (hidden, shown on click)    -->
+    <!-- ══════════════════════════════════════════════════ -->
+
+    <!-- Samaan Detail Panel -->
+    <div class="project-panel" id="panel-samaan" role="dialog" aria-modal="true" aria-label="Samaan project detail"
+      hidden>
+      <div class="panel-inner">
+        <div class="panel-header">
+          <button class="panel-back" data-close-project aria-label="Back to projects">
+            <span aria-hidden="true">←</span> Back
+          </button>
+          <div class="panel-links">
+            <a class="text-link" href="https://samaan-api.azurewebsites.net/swagger" target="_blank"
+              rel="noreferrer">Live API →</a>
+            <a class="text-link" href="https://github.com/adityaakunjir/samaan-api" target="_blank"
+              rel="noreferrer">Backend →</a>
+            <a class="text-link" href="https://github.com/adityaakunjir/samaan-merchant" target="_blank"
+              rel="noreferrer">Merchant →</a>
+            <a class="text-link" href="https://github.com/adityaakunjir/samaan-customer" target="_blank"
+              rel="noreferrer">Customer →</a>
           </div>
         </div>
-      </section>
 
-      <section class="section contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="section-inner">
-          <div class="section-heading reveal">
-            <p class="section-kicker">05 // CONNECT</p>
+        <div class="panel-hero">
+          <img src="assets/samaan-home.svg" alt="Samaan home screen" class="panel-hero-img" />
+          <div class="panel-hero-info">
+            <p class="section-kicker">01 // FEATURED PROJECT</p>
+            <h2>Samaan — Hyperlocal Grocery Delivery Platform</h2>
+            <p>A multi-role grocery delivery system connecting customers with nearby kirana stores. Includes Customer
+              &amp; Merchant apps with real-time order tracking, product management, and role-based access.</p>
+            <p>Built with ASP.NET Core (.NET 8) Web API, Entity Framework Core, Azure SQL, and JWT authentication.
+              Deployed on Azure App Service with Swagger API documentation.</p>
+            <ul class="tag-list">
+              <li>.NET 8</li>
+              <li>ASP.NET Core</li>
+              <li>JWT</li>
+              <li>Azure SQL</li>
+              <li>EF Core</li>
+              <li>Swagger</li>
+              <li>Azure</li>
+              <li>REST API</li>
+            </ul>
           </div>
-          <div class="contact-panel reveal">
-            <div>
-              <h2 id="contact-title">Let's build something.</h2>
-              <p>
-                Based in Pune. Open to .NET roles, remote work, and freelance.
-                Drop me a message — I respond fast.
+        </div>
+
+        <div class="panel-screenshots">
+          <p class="media-list-label">// SCREENSHOTS &amp; FEATURES</p>
+
+          <div class="media-item">
+            <img src="assets/samaan-login.svg" alt="Customer login screen" width="200" height="130" />
+            <div class="media-info">
+              <h4>Customer Authentication — Login &amp; Onboarding</h4>
+              <p>Secure authentication flow with email/phone login, demo credentials, OTP verification, and
+                session-based access to personalized shopping and order history.</p>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <img src="assets/samaan-home.svg" alt="Product discovery home screen" width="200" height="130" />
+            <div class="media-info">
+              <h4>Product Discovery &amp; Nearby Stores</h4>
+              <p>Personalized home experience showing nearby kirana stores, categories, smart recommendations, and
+                real-time delivery estimates.</p>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <img src="assets/samaan-cart.svg" alt="Cart management screen" width="200" height="130" />
+            <div class="media-info">
+              <h4>Cart Management</h4>
+              <p>Dynamic cart with quantity controls, pricing calculation, delivery fee logic, and promo code support.
               </p>
             </div>
+          </div>
 
-            <div class="contact-actions" aria-label="Contact links">
-              <a class="btn btn-primary btn-lg" href="https://mail.google.com/mail/?view=cm&fs=1&to=adikunjir19@gmail.com" target="_blank" rel="noreferrer">
-                <span aria-hidden="true">&gt;</span>
-                Email Me
-              </a>
-              <a class="btn btn-ghost" href="tel:+919325755021">
-                <span class="contact-icon" aria-hidden="true">☎</span>
-                Phone
-              </a>
-              <a class="btn btn-ghost" href="https://github.com/adityaakunjir" target="_blank" rel="noreferrer">
-                <svg class="contact-icon contact-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.15c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18.92-.26 1.9-.38 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.79 1.07.79 2.16v3.13c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
-                </svg>
-                GitHub
-              </a>
-              <a class="btn btn-ghost" href="https://www.linkedin.com/in/adityakunjir" target="_blank" rel="noreferrer">
-                <svg class="contact-icon contact-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.33 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.56v11.45ZM22.23 0H1.76C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.76 24h20.47c.97 0 1.77-.77 1.77-1.73V1.73C24 .77 23.2 0 22.23 0Z" />
-                </svg>
-                LinkedIn
-              </a>
+          <div class="media-item">
+            <img src="assets/samaan-checkout.svg" alt="Checkout and payments screen" width="200" height="130" />
+            <div class="media-info">
+              <h4>Checkout &amp; Payments</h4>
+              <p>End-to-end checkout flow with address selection, order summary, and multiple payment options including
+                UPI and credit card.</p>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <img src="assets/samaan-orders.svg" alt="Order history and tracking screen" width="200" height="130" />
+            <div class="media-info">
+              <h4>Order History &amp; Tracking</h4>
+              <p>Order lifecycle tracking with active and completed orders, reorder functionality, and real-time status
+                updates.</p>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <img src="assets/samaan-merchant-landing.svg" alt="Merchant landing page" width="200" height="130" />
+            <div class="media-info">
+              <h4>Merchant Landing Page — Partner Onboarding</h4>
+              <p>Public-facing merchant portal introducing the platform, benefits, and onboarding flow for local store
+                partners before authentication.</p>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <img src="assets/samaan-merchant-dashboard.svg" alt="Merchant dashboard" width="200" height="130" />
+            <div class="media-info">
+              <h4>Merchant Dashboard</h4>
+              <p>Centralized dashboard for merchants to manage their store, view analytics, track revenue, and handle
+                orders from a single view.</p>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <img src="assets/samaan-merchant-products.svg" alt="Product and inventory management" width="200"
+              height="130" />
+            <div class="media-info">
+              <h4>Product &amp; Inventory Management</h4>
+              <p>Merchant interface for managing product catalogue, stock levels, pricing, and availability with
+                category-based organization.</p>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <img src="assets/samaan-merchant-notifications.svg" alt="Order notifications" width="200" height="130" />
+            <div class="media-info">
+              <h4>Order Notifications &amp; Management</h4>
+              <p>Real-time incoming order alerts for merchants with accept/reject controls and order status progression
+                workflow.</p>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <span class="footer-copy">&copy; Aditya Kunjir</span>
-        <a class="back-to-top" href="#top" aria-label="Back to top">↑ TOP</a>
       </div>
-    </footer>
-    <script src="vendor/three.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+    </div>
+
+    <!-- Tayan Detail Panel -->
+    <div class="project-panel" id="panel-tayan" role="dialog" aria-modal="true" aria-label="Tayan project detail"
+      hidden>
+      <div class="panel-inner">
+        <div class="panel-header">
+          <button class="panel-back" data-close-project aria-label="Back to projects">
+            <span aria-hidden="true">←</span> Back
+          </button>
+        </div>
+        <div class="panel-hero">
+          <img src="assets/project-02.svg" alt="Tayan Solutions" class="panel-hero-img" />
+          <div class="panel-hero-info">
+            <p class="section-kicker">02 // PROJECT</p>
+            <h2>Tayan Solutions OJT</h2>
+            <p>Project-based on-the-job training focused on building responsive web pages, Figma/Photoshop layouts, and
+              user flow testing for real client projects.</p>
+            <p class="project-note">Jan 2024 – Mar 2024</p>
+            <ul class="tag-list">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>Figma</li>
+              <li>Photoshop</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NLP Detail Panel -->
+    <div class="project-panel" id="panel-nlp" role="dialog" aria-modal="true" aria-label="NLP research project detail"
+      hidden>
+      <div class="panel-inner">
+        <div class="panel-header">
+          <button class="panel-back" data-close-project aria-label="Back to projects">
+            <span aria-hidden="true">←</span> Back
+          </button>
+          <div class="panel-links">
+            <a class="text-link" href="https://www.jetir.org/view?paper=JETIR2503359" target="_blank"
+              rel="noreferrer">Read Publication →</a>
+          </div>
+        </div>
+        <div class="panel-hero">
+          <img src="assets/project-03.svg" alt="NLP Research" class="panel-hero-img" />
+          <div class="panel-hero-info">
+            <p class="section-kicker">03 // RESEARCH</p>
+            <h2>NLP E-learning Ad Research</h2>
+            <p>Published research on ad content optimization for e-learning mobile applications using natural language
+              processing techniques. Focused on improving ad relevance and engagement through NLP-driven content
+              analysis.</p>
+            <ul class="tag-list">
+              <li>NLP</li>
+              <li>Research</li>
+              <li>E-learning</li>
+              <li>Published</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── CERTIFICATES ── -->
+    <section class="section certs-section" id="certificates" aria-labelledby="certs-title">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="section-kicker">02 // CREDENTIALS</p>
+          <h2 id="certs-title">Certified &amp; verified.</h2>
+        </div>
+
+        <div class="cert-grid">
+          <article class="cert-card reveal">
+            <div class="cert-img-wrap">
+              <img src="assets/cert-azure-fundamentals.svg" alt="Microsoft Azure Fundamentals AZ-900 certificate"
+                width="320" height="220" />
+            </div>
+            <div class="cert-body">
+              <p class="cert-issuer">Microsoft</p>
+              <h3 class="cert-name">Azure Fundamentals</h3>
+              <p class="cert-id">AZ-900</p>
+            </div>
+          </article>
+
+          <article class="cert-card reveal">
+            <div class="cert-img-wrap">
+              <img src="assets/cert-dotnet-fundamentals.svg" alt=".NET Fundamentals certificate" width="320"
+                height="220" />
+            </div>
+            <div class="cert-body">
+              <p class="cert-issuer">Microsoft</p>
+              <h3 class="cert-name">.NET Fundamentals</h3>
+              <p class="cert-id">Microsoft Learn</p>
+            </div>
+          </article>
+
+          <article class="cert-card reveal">
+            <div class="cert-img-wrap">
+              <img src="assets/cert-csharp-oop.svg" alt="Advanced C# OOP certificate" width="320" height="220" />
+            </div>
+            <div class="cert-body">
+              <p class="cert-issuer">Udemy</p>
+              <h3 class="cert-name">Advanced C# OOP</h3>
+              <p class="cert-id">Object-Oriented Programming</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+      <div class="section-inner split-layout">
+        <div class="section-heading reveal">
+          <p class="section-kicker">03 // SKILLS</p>
+          <h2 id="skills-title">What I work with.</h2>
+          <p>
+            Strong in C# and ASP.NET Core. I've built full APIs, handled auth,
+            wired up databases, and shipped to Azure — with enough frontend
+            range to not need a separate dev for UI.
+          </p>
+        </div>
+
+        <div class="skill-grid">
+          <article class="skill-panel reveal">
+            <span><b class="skill-icon">C#</b> Backend</span>
+            <h3>.NET API development</h3>
+            <p>C#, .NET 8, ASP.NET Core Web API, EF Core, LINQ, Swagger. I structure things cleanly — controllers,
+              services, DTOs, the works.</p>
+            <div class="skill-bar" aria-hidden="true">
+              <div class="skill-fill" style="--fill:92%" data-pct="92"></div>
+            </div>
+          </article>
+          <article class="skill-panel reveal">
+            <span><b class="skill-icon">JS</b> Frontend</span>
+            <h3>Web interfaces</h3>
+            <p>JavaScript, HTML, CSS, React, Angular. Enough to build real screens, not just pixel-push someone else's
+              designs.</p>
+            <div class="skill-bar" aria-hidden="true">
+              <div class="skill-fill" style="--fill:78%" data-pct="78"></div>
+            </div>
+          </article>
+          <article class="skill-panel reveal">
+            <span><b class="skill-icon">SQL</b> Data</span>
+            <h3>Databases</h3>
+            <p>SQL Server and Azure SQL, modelled through EF Core. Comfortable writing queries, setting up relations,
+              and keeping data clean.</p>
+            <div class="skill-bar" aria-hidden="true">
+              <div class="skill-fill" style="--fill:85%" data-pct="85"></div>
+            </div>
+          </article>
+          <article class="skill-panel reveal">
+            <span><b class="skill-icon">AZ</b> Cloud</span>
+            <h3>Azure & security</h3>
+            <p>Azure App Service, Static Web Apps, JWT auth, role-based access, and password hashing. Deployed real
+              projects — not just tutorials.</p>
+            <div class="skill-bar" aria-hidden="true">
+              <div class="skill-fill" style="--fill:80%" data-pct="80"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about" aria-labelledby="about-title">
+      <div class="section-inner about-grid">
+        <div class="about-copy reveal">
+          <p class="section-kicker">04 // EXPERIENCE</p>
+          <h2 id="about-title">Where I've been.</h2>
+          <p>
+            M.Sc. Computer Science grad from Pune. I spend most of my time
+            in the backend — C#, .NET, SQL Server, Azure — but I can get a
+            frontend screen working when I need to.
+          </p>
+          <p>
+            Right now I'm actively building Samaan and looking for a dev
+            team where I can ship real things, not just maintain legacy code.
+          </p>
+        </div>
+
+        <div class="timeline reveal" aria-label="Developer timeline">
+          <article>
+            <span>Dec 2025 - Present</span>
+            <h3>Samaan full-stack platform</h3>
+            <p>Built customer and merchant apps with .NET 8, Azure SQL, JWT auth, order flows, Swagger, and Azure
+              deployment.</p>
+          </article>
+          <article>
+            <span>Jul 2023 - Jun 2025</span>
+            <h3>M.Sc. Computer Science</h3>
+            <p>Completed postgraduate study at PVG's College of Science & Commerce after a B.Sc. in Computer Science.
+            </p>
+          </article>
+          <article>
+            <span>Jan 2024 - Mar 2024</span>
+            <h3>Tayan Solutions OJT</h3>
+            <p>Worked on web pages, UI layouts, responsive improvements, and testing for login, browsing, cart, and
+              order flows.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="section-kicker">05 // CONNECT</p>
+        </div>
+        <div class="contact-panel reveal">
+          <div>
+            <h2 id="contact-title">Let's build something.</h2>
+            <p>
+              Based in Pune. Open to .NET roles, remote work, and freelance.
+              Drop me a message — I respond fast.
+            </p>
+          </div>
+
+          <div class="contact-actions" aria-label="Contact links">
+            <a class="btn btn-primary btn-lg" href="https://mail.google.com/mail/?view=cm&fs=1&to=adikunjir19@gmail.com"
+              target="_blank" rel="noreferrer">
+              Email Me
+            </a>
+            <a class="btn btn-ghost" href="tel:+919325755021">
+              <span class="contact-icon" aria-hidden="true">☎</span>
+              Phone
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/adityaakunjir" target="_blank" rel="noreferrer">
+              <svg class="contact-icon contact-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.15c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18.92-.26 1.9-.38 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.79 1.07.79 2.16v3.13c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+              </svg>
+              GitHub
+            </a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/adityakunjir" target="_blank" rel="noreferrer">
+              <svg class="contact-icon contact-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.33 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.56v11.45ZM22.23 0H1.76C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.76 24h20.47c.97 0 1.77-.77 1.77-1.73V1.73C24 .77 23.2 0 22.23 0Z" />
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-copy">&copy; Aditya Kunjir</span>
+      <a class="back-to-top" href="#top" aria-label="Back to top">↑ TOP</a>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="vendor/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>

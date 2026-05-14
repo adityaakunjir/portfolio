@@ -2632,3 +2632,187 @@ h3 {
     width: min(90vw, 320px);
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE CINEMATIC UPGRADE v2 — all scoped to ≤780px / coarse
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hide loader on desktop — shown only by JS on mobile */
+#mobile-loader {
+  display: none;
+}
+
+/* Touch canvas hidden on desktop */
+#touch-canvas {
+  display: none;
+}
+
+@media (max-width: 780px) {
+
+  /* ── Cinematic Loader ── */
+  #mobile-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c91312;
+    overflow: hidden;
+  }
+
+  #mobile-loader.loader-hidden {
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .loader-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .loader-ak-mark {
+    display: grid;
+    place-items: center;
+    width: 80px;
+    height: 60px;
+    background: #ffffff;
+    color: #c91312;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    clip-path: polygon(0 12%, 88% 0, 100% 80%, 10% 100%);
+    transform: scale(0.4);
+    opacity: 0;
+    will-change: transform, opacity;
+    box-shadow: 0 0 40px rgba(255,255,255,0.5), 0 0 80px rgba(255,255,255,0.2);
+  }
+
+  .loader-jp {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    min-height: 1.6em;
+    opacity: 0;
+  }
+
+  .loader-jp-cursor {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.6);
+    animation: blink-terminal 0.6s steps(1) infinite;
+  }
+
+  /* Dark blade that sweeps across the loader */
+  .loader-blade {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: var(--bg);
+    clip-path: polygon(110% 0, 120% 0, 120% 100%, 110% 100%);
+    will-change: clip-path;
+  }
+
+
+  /* ── Touch ember canvas ── */
+  #touch-canvas {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 9990;
+    pointer-events: none;
+  }
+
+  /* ── Skill bar count label ── */
+  .skill-bar {
+    position: relative;
+    margin-top: 14px;
+  }
+
+  .skill-pct-label {
+    position: absolute;
+    right: 0;
+    top: -20px;
+    color: var(--neon);
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .skill-panel.is-counted .skill-pct-label {
+    opacity: 1;
+  }
+
+  /* ── Terminal Contact heading ── */
+  #terminal-heading {
+    display: inline;
+  }
+
+  .term-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--neon);
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    opacity: 0;
+    animation: blink-terminal 0.8s steps(1) infinite;
+  }
+
+  .term-cursor.is-active {
+    opacity: 1;
+  }
+
+
+  /* ── Tap ripple ring ── */
+  .tap-ripple {
+    position: fixed;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--hot);
+    pointer-events: none;
+    z-index: 9989;
+    transform: translate(-50%, -50%) scale(0);
+    animation: tap-ripple-anim 0.5s ease-out forwards;
+  }
+
+  @keyframes tap-ripple-anim {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+  }
+
+  /* ── Button tap spring pulse ── */
+  .btn:active,
+  .drawer-cta:active {
+    animation: btn-spring 0.28s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+
+  @keyframes btn-spring {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(0.93); }
+    70%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+}
+
+@media (pointer: coarse) {
+  /* Touch-active card glow */
+  .project-card:active,
+  [data-open-project]:active {
+    border-color: rgba(255, 10, 91, 0.65) !important;
+    box-shadow: 0 0 36px rgba(255, 10, 91, 0.28), inset 0 0 24px rgba(255, 10, 91, 0.08) !important;
+    transition: border-color 80ms ease, box-shadow 80ms ease !important;
+  }
+}

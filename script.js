@@ -375,11 +375,11 @@ document.addEventListener("keydown", e => {
 });
 
 /* ── Mobile Hamburger Menu ── */
-const hamburger    = document.querySelector("[data-hamburger]");
-const drawer       = document.querySelector("[data-drawer]");
+const hamburger = document.querySelector("[data-hamburger]");
+const drawer = document.querySelector("[data-drawer]");
 const drawerBackdrop = document.querySelector("[data-drawer-backdrop]");
-const drawerClose  = document.querySelector("[data-drawer-close]");
-const drawerLinks  = document.querySelectorAll("[data-drawer-link]");
+const drawerClose = document.querySelector("[data-drawer-close]");
+const drawerLinks = document.querySelectorAll("[data-drawer-link]");
 
 function openDrawer() {
   if (!drawer) return;
@@ -438,3 +438,253 @@ drawer?.addEventListener("keydown", e => {
     if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
   }
 });
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE CINEMATIC UPGRADE
+   All features guarded by isMobile() / isTouch checks.
+   Desktop is NEVER affected.
+   ═══════════════════════════════════════════════════════════════ */
+
+const isMobile = () => window.innerWidth <= 780;
+const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+/* ─────────────────────────────────────────────
+   1. CINEMATIC LOADER
+───────────────────────────────────────────── */
+function initMobileLoader(onComplete) {
+  const loader = document.getElementById('mobile-loader');
+  if (!loader) { onComplete?.(); return; }
+
+  if (!isMobile()) {
+    loader.remove();
+    onComplete?.();
+    return;
+  }
+
+  const akMark = loader.querySelector('.loader-ak-mark');
+  const jpEl = loader.querySelector('#loader-jp');
+  const blade = loader.querySelector('.loader-blade');
+  const jpText = '未来を構築する';
+
+  // Typing cursor span
+  const jpCursor = document.createElement('span');
+  jpCursor.className = 'loader-jp-cursor';
+  jpCursor.textContent = '|';
+
+  // Step 1 — AK mark springs in
+  setTimeout(() => {
+    if (!akMark) return;
+    akMark.style.transition = 'transform 0.55s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease';
+    akMark.style.transform = 'scale(1)';
+    akMark.style.opacity = '1';
+  }, 150);
+
+  // Step 2 — JP text fades in then types
+  setTimeout(() => {
+    if (!jpEl) return;
+    jpEl.style.transition = 'opacity 0.3s ease';
+    jpEl.style.opacity = '1';
+    jpEl.appendChild(jpCursor);
+    let i = 0;
+    const typeIt = setInterval(() => {
+      if (i < jpText.length) {
+        jpEl.insertBefore(document.createTextNode(jpText[i++]), jpCursor);
+      } else {
+        clearInterval(typeIt);
+      }
+    }, 85);
+  }, 650);
+
+  // Step 3 — blade slash wipes left across the loader
+  setTimeout(() => {
+    if (!blade) return;
+    blade.style.transition = 'clip-path 0.38s cubic-bezier(0.7,0,0.3,1)';
+    blade.style.clipPath = 'polygon(-10% 0, 110% 0, 110% 100%, -10% 100%)';
+  }, 1680);
+
+  // Step 4 — remove loader, run callback
+  setTimeout(() => {
+    loader.classList.add('loader-hidden');
+    setTimeout(() => loader.remove(), 200);
+    onComplete?.();
+  }, 2060);
+}
+
+/* ─────────────────────────────────────────────
+   2. GSAP SCROLL-TRIGGERED REVEALS
+───────────────────────────────────────────── */
+function initMobileGSAP() {
+  if (!isMobile() || !window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  document.documentElement.classList.add('gsap-init');
+
+  // Section kickers — slide in from left
+  gsap.utils.toArray('.section-kicker, .kicker').forEach(el => {
+    gsap.fromTo(el,
+      { x: -56, opacity: 0 },
+      {
+        x: 0, opacity: 1, duration: 0.55, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+      });
+  });
+
+  // h2 headings — spring overshoot
+  gsap.utils.toArray('.section:not(#contact) h2, .about-copy h2').forEach(el => {
+    gsap.fromTo(el,
+      { y: 48, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.7, ease: 'back.out(1.8)',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+      });
+  });
+
+  // Card grids — staggered fan-in
+  ['.project-grid', '.skill-grid', '.cert-grid', '.timeline'].forEach(sel => {
+    const grid = document.querySelector(sel);
+    if (!grid) return;
+    gsap.fromTo(Array.from(grid.children),
+      { y: 60, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.09,
+        scrollTrigger: { trigger: grid, start: 'top 88%', once: true }
+      });
+  });
+
+  // Hero content loads in
+  const heroContent = document.querySelector('.hero-content');
+  if (heroContent) {
+    gsap.fromTo(heroContent,
+      { y: 32, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.75, ease: 'power3.out', delay: 0.15 });
+  }
+}
+
+/* ─────────────────────────────────────────────
+   3. SKILL BAR COUNT-UP
+───────────────────────────────────────────── */
+function initSkillCounters() {
+  if (!isMobile()) return;
+
+  document.querySelectorAll('.skill-bar').forEach(bar => {
+    const fill = bar.querySelector('.skill-fill[data-pct]');
+    if (!fill) return;
+    const target = parseInt(fill.dataset.pct, 10);
+    if (isNaN(target)) return;
+
+    // Inject label above bar
+    const label = document.createElement('span');
+    label.className = 'skill-pct-label';
+    label.textContent = '0%';
+    bar.insertBefore(label, fill);
+
+    // Reset width — GSAP or CSS will drive it
+    fill.style.width = '0%';
+    fill.style.transition = 'none';
+
+    const panel = bar.closest('.skill-panel');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        obs.disconnect();
+        panel?.classList.add('is-counted');
+
+        if (window.gsap) {
+          gsap.to(fill, { width: `${target}%`, duration: 1.4, ease: 'power2.out' });
+          gsap.to({ v: 0 }, {
+            v: target, duration: 1.4, ease: 'power2.out',
+            onUpdate() { label.textContent = Math.round(this.targets()[0].v) + '%'; },
+            onComplete() { label.textContent = target + '%'; }
+          });
+        } else {
+          fill.style.transition = 'width 1.2s ease';
+          fill.style.width = `${target}%`;
+          label.textContent = `${target}%`;
+        }
+      });
+    }, { threshold: 0.35 });
+
+    if (panel) obs.observe(panel);
+  });
+}
+
+/* ─────────────────────────────────────────────
+   4. SECTION GLITCH FLASH — REMOVED
+───────────────────────────────────────────── */
+// Removed: was too distracting on scroll
+
+/* ─────────────────────────────────────────────
+   5. CONTACT HEADING TYPEOUT
+───────────────────────────────────────────── */
+function initTerminalContact() {
+  if (!isMobile()) return;
+
+  const titleEl = document.getElementById('contact-title');
+  if (!titleEl) return;
+
+  const original = titleEl.textContent.trim();
+  titleEl.textContent = '';
+
+  const textSpan = document.createElement('span');
+  textSpan.id = 'terminal-heading';
+  const cursorSpan = document.createElement('span');
+  cursorSpan.className = 'term-cursor';
+  titleEl.appendChild(textSpan);
+  titleEl.appendChild(cursorSpan);
+
+  // Pre-populate so heading is NEVER empty on load
+  textSpan.textContent = original;
+
+  // When section scrolls into view — clear and retype for the effect
+  let typed = false;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || typed) return;
+      typed = true;
+      obs.disconnect();
+      cursorSpan.classList.add('is-active');
+      textSpan.textContent = '';
+      let i = 0;
+      const tick = setInterval(() => {
+        if (i < original.length) {
+          textSpan.textContent += original[i++];
+        } else {
+          clearInterval(tick);
+        }
+      }, 52);
+    });
+  }, { threshold: 0.25 }); // lower threshold — fires sooner
+
+  const section = document.getElementById('contact');
+  if (section) obs.observe(section);
+}
+
+/* ─────────────────────────────────────────────
+   6. TOUCH EFFECTS — REMOVED
+───────────────────────────────────────────── */
+// Ember trail and tap ripple removed per user request.
+function initTouchEffects() { }
+
+/* ─────────────────────────────────────────────
+   BOOT SEQUENCE
+───────────────────────────────────────────── */
+function bootMobile() {
+  initTouchEffects();           // touch ripple + ember trail (no deps)
+  initSkillCounters();          // skill counter (no GSAP dep)
+  initTerminalContact();        // contact terminal (no GSAP dep)
+
+  // GSAP features run after loader completes
+  const afterLoader = () => {
+    initMobileGSAP();
+  };
+
+  initMobileLoader(afterLoader);
+}
+
+// Defer until GSAP deferred scripts have loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootMobile);
+} else {
+  // Give deferred GSAP scripts a tick to register
+  setTimeout(bootMobile, 0);
+}
+
