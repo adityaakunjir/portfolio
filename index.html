@@ -184,7 +184,7 @@
       </nav>
 
       <a
-        class="nav-cta"
+        class="nav-cta nav-cta-desktop"
         href="assets/aditya-kunjir-resume.pdf"
         target="_blank"
         rel="noreferrer"
@@ -192,7 +192,47 @@
         <span aria-hidden="true">></span>
         Resume
       </a>
+
+      <button class="nav-hamburger" data-hamburger aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer-backdrop" data-drawer-backdrop aria-hidden="true"></div>
+    <nav class="mobile-drawer" id="mobile-drawer" data-drawer aria-label="Mobile navigation">
+      <div class="drawer-header">
+        <span class="drawer-title">Navigation</span>
+        <button class="drawer-close" data-drawer-close aria-label="Close menu">✕</button>
+      </div>
+      <div class="drawer-links">
+        <a href="#projects" data-drawer-link>
+          <span class="drawer-link-num">01</span>
+          <span>Projects</span>
+        </a>
+        <a href="#certificates" data-drawer-link>
+          <span class="drawer-link-num">02</span>
+          <span>Certificates</span>
+        </a>
+        <a href="#skills" data-drawer-link>
+          <span class="drawer-link-num">03</span>
+          <span>Skills</span>
+        </a>
+        <a href="#about" data-drawer-link>
+          <span class="drawer-link-num">04</span>
+          <span>Experience</span>
+        </a>
+        <a href="#contact" data-drawer-link>
+          <span class="drawer-link-num">05</span>
+          <span>Contact</span>
+        </a>
+      </div>
+      <a class="drawer-cta" href="assets/aditya-kunjir-resume.pdf" target="_blank" rel="noreferrer">
+        <span aria-hidden="true">></span> Download Resume
+      </a>
+    </nav>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">

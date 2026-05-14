@@ -373,3 +373,68 @@ document.querySelectorAll("[data-close-project]").forEach(btn => {
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") closePanel();
 });
+
+/* ── Mobile Hamburger Menu ── */
+const hamburger    = document.querySelector("[data-hamburger]");
+const drawer       = document.querySelector("[data-drawer]");
+const drawerBackdrop = document.querySelector("[data-drawer-backdrop]");
+const drawerClose  = document.querySelector("[data-drawer-close]");
+const drawerLinks  = document.querySelectorAll("[data-drawer-link]");
+
+function openDrawer() {
+  if (!drawer) return;
+  drawer.classList.add('is-open');
+  drawerBackdrop?.classList.add('is-open');
+  hamburger?.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  // Focus first interactive element for accessibility
+  setTimeout(() => drawer.querySelector('a, button')?.focus(), 50);
+}
+
+function closeDrawer() {
+  if (!drawer) return;
+  drawer.classList.remove('is-open');
+  drawerBackdrop?.classList.remove('is-open');
+  hamburger?.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  hamburger?.focus();
+}
+
+function toggleDrawer() {
+  if (drawer?.classList.contains("is-open")) {
+    closeDrawer();
+  } else {
+    openDrawer();
+  }
+}
+
+hamburger?.addEventListener("click", toggleDrawer);
+drawerClose?.addEventListener("click", closeDrawer);
+drawerBackdrop?.addEventListener("click", closeDrawer);
+
+// Close on nav link tap + smooth scroll
+drawerLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    closeDrawer();
+  });
+});
+
+// Escape key closes drawer
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && drawer?.classList.contains("is-open")) {
+    closeDrawer();
+  }
+});
+
+// Trap focus inside drawer while open
+drawer?.addEventListener("keydown", e => {
+  if (e.key !== "Tab") return;
+  const focusable = drawer.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (e.shiftKey) {
+    if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+  } else {
+    if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
+  }
+});
