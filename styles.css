@@ -2178,12 +2178,12 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  width: 40px;
-  height: 40px;
+  gap: 4px;
+  width: 34px;
+  height: 34px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
   background: rgba(5, 5, 10, 0.55);
   backdrop-filter: blur(12px);
   cursor: pointer;
@@ -2199,7 +2199,7 @@ h3 {
 
 .hamburger-line {
   display: block;
-  width: 18px;
+  width: 14px;
   height: 1.5px;
   background: var(--text);
   border-radius: 2px;
@@ -2246,20 +2246,20 @@ h3 {
   right: 0;
   bottom: 0;
   z-index: 150;
-  width: min(80vw, 320px);
+  width: min(68vw, 240px);
   display: flex;
   flex-direction: column;
   padding: 0;
   background:
-    linear-gradient(135deg, rgba(20, 18, 28, 0.97), rgba(8, 7, 14, 0.98));
+    linear-gradient(160deg, rgba(18, 16, 26, 0.98), rgba(6, 5, 12, 0.99));
   border-left: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.6);
+  box-shadow: -16px 0 48px rgba(0, 0, 0, 0.7);
   transform: translateX(110%);
   visibility: hidden;
   pointer-events: none;
   transition:
-    transform 360ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0ms 360ms;
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0ms 300ms;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding-bottom: env(safe-area-inset-bottom);
@@ -2270,7 +2270,7 @@ h3 {
   visibility: visible;
   pointer-events: auto;
   transition:
-    transform 360ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 0ms 0ms;
 }
 
@@ -2321,24 +2321,24 @@ h3 {
 .drawer-links a {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 20px;
+  gap: 12px;
+  padding: 10px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.78);
   font-family: var(--font-heading);
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: color 180ms ease, background 180ms ease, padding-left 180ms ease;
-  min-height: 48px;
+  transition: color 160ms ease, background 160ms ease, padding-left 160ms ease;
+  min-height: 44px;
 }
 
 .drawer-links a:hover,
 .drawer-links a:active {
   color: var(--neon);
   background: rgba(0, 255, 65, 0.04);
-  padding-left: 26px;
+  padding-left: 22px;
 }
 
 .drawer-link-num {
