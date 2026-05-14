@@ -86,7 +86,7 @@ if ("IntersectionObserver" in window) {
         }
       });
     },
-    { threshold: 0.16 }
+    { threshold: 0, rootMargin: '0px 0px -5% 0px' }
   );
 
   revealItems.forEach((item, i) => {
@@ -529,7 +529,7 @@ function initMobileGSAP() {
       { x: -56, opacity: 0 },
       {
         x: 0, opacity: 1, duration: 0.55, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
       });
   });
 
@@ -539,7 +539,7 @@ function initMobileGSAP() {
       { y: 48, opacity: 0 },
       {
         y: 0, opacity: 1, duration: 0.7, ease: 'back.out(1.8)',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
       });
   });
 
@@ -551,7 +551,7 @@ function initMobileGSAP() {
       { y: 60, opacity: 0 },
       {
         y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.09,
-        scrollTrigger: { trigger: grid, start: 'top 88%', once: true }
+        scrollTrigger: { trigger: grid, start: 'top 85%', once: true }
       });
   });
 
