@@ -21,6 +21,18 @@
   --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spin-card-border {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -887,9 +899,11 @@ h3 {
 
 .project-card,
 .skill-panel,
+.cert-card,
 .timeline article,
 .contact-panel,
 .hero-metrics div {
+  --spin-border-opacity: 0;
   border: 1px solid var(--line);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent 38%),
@@ -910,6 +924,15 @@ h3 {
   border-color: rgba(53, 216, 230, 0.42);
   box-shadow: 0 22px 70px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 10, 91, 0.13);
   will-change: transform;
+}
+
+.project-card:hover,
+.project-card:focus-visible,
+.skill-panel:hover,
+.skill-panel:focus-visible,
+.cert-card:hover,
+.cert-card:focus-visible {
+  --spin-border-opacity: 1;
 }
 
 .project-card {
@@ -1503,6 +1526,45 @@ h3 {
   opacity: var(--card-glow, 0);
   pointer-events: none;
   transition: opacity 160ms ease;
+}
+
+.project-card::after,
+.skill-panel::after,
+.cert-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 2px;
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+  background: conic-gradient(from var(--border-angle),
+      rgba(53, 216, 230, 0.06) 0 16%,
+      rgba(53, 216, 230, 0.98) 22%,
+      rgba(245, 230, 74, 0.95) 29%,
+      rgba(255, 10, 91, 0.98) 38%,
+      rgba(53, 216, 230, 0.2) 46%,
+      rgba(53, 216, 230, 0.06) 58% 100%);
+  filter: drop-shadow(0 0 10px rgba(53, 216, 230, 0.28)) drop-shadow(0 0 16px rgba(255, 10, 91, 0.18));
+  opacity: var(--spin-border-opacity);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: opacity 180ms ease;
+}
+
+.project-card:hover::after,
+.project-card:focus-visible::after,
+.skill-panel:hover::after,
+.skill-panel:focus-visible::after,
+.cert-card:hover::after,
+.cert-card:focus-visible::after {
+  animation: spin-card-border 1.65s linear infinite;
 }
 
 .project-card:hover,
@@ -3198,3 +3260,4 @@ h3 {
     font-size: 0.8rem;
   }
 }
+
