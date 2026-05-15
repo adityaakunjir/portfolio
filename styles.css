@@ -1672,6 +1672,15 @@ h3 {
     scroll-margin-top: 52px;
   }
 
+  .section {
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+  }
+
+  .gsap-init .reveal {
+    transition: none;
+  }
+
   .site-nav {
     top: 6px;
     left: 6px;

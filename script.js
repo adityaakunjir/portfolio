@@ -2,6 +2,16 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
+const forceHeroOnRefresh = () => {
+  if (window.location.hash) return;
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+};
+
+forceHeroOnRefresh();
+window.addEventListener("DOMContentLoaded", forceHeroOnRefresh, { once: true });
+window.addEventListener("pageshow", forceHeroOnRefresh);
+window.addEventListener("load", forceHeroOnRefresh, { once: true });
+
 document.documentElement.classList.add("motion-ready");
 
 const nav = document.querySelector("[data-nav]");
@@ -104,6 +114,7 @@ if ("IntersectionObserver" in window) {
 }
 
 window.setTimeout(() => {
+  if (typeof isMobile === "function" && isMobile() && window.gsap && !reduceMotion) return;
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }, 700);
 
@@ -520,62 +531,117 @@ function initMobileLoader(onComplete) {
 ───────────────────────────────────────────── */
 function initMobileGSAP() {
   if (!isMobile() || !window.gsap || !window.ScrollTrigger) return;
+  if (reduceMotion) {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
+
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
   document.documentElement.classList.add('gsap-init');
 
-  // Section kickers — slide in from left
-  gsap.utils.toArray('.section-kicker, .kicker').forEach(el => {
-    gsap.fromTo(el,
-      { x: -56, opacity: 0 },
-      {
-        x: 0, opacity: 1, duration: 0.55, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
-      });
+  const sectionGroups = gsap.utils.toArray('.section').map((section) => {
+    const targets = section.querySelectorAll(
+      '.section-heading, .project-card, .cert-card, .skill-panel, .about-copy, .timeline article, .contact-panel'
+    );
+
+    return {
+      section,
+      targets: Array.from(targets),
+    };
+  }).filter((group) => group.targets.length);
+
+  const revealGroup = (group) => {
+    if (group.revealed) return;
+    group.revealed = true;
+    group.timeline.play(0);
+  };
+
+  const revealVisibleGroups = () => {
+    sectionGroups.forEach((group) => {
+      if (group.revealed) return;
+      const rect = group.section.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.92 && rect.bottom >= 0) {
+        revealGroup(group);
+      }
+    });
+  };
+
+  sectionGroups.forEach((group) => {
+    const { section, targets } = group;
+
+    gsap.set(targets, {
+      autoAlpha: 0,
+      y: 28,
+      force3D: true,
+      transition: 'none',
+      willChange: 'transform, opacity',
+    });
+
+    group.timeline = gsap.timeline({
+      paused: true,
+      defaults: { ease: 'power3.out' },
+      onComplete() {
+        targets.forEach((target) => target.classList.add('is-visible'));
+        gsap.set(targets, { clearProps: 'willChange,transition,transform,opacity,visibility' });
+      },
+    }).to(targets, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.62,
+      stagger: {
+        each: 0.055,
+        from: 'start',
+      },
+    });
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 92%',
+      end: 'bottom top',
+      once: true,
+      invalidateOnRefresh: true,
+      onEnter: () => revealGroup(group),
+      onEnterBack: () => revealGroup(group),
+    });
   });
 
-  // h2 headings — spring overshoot
-  gsap.utils.toArray('.section:not(#contact) h2, .about-copy h2').forEach(el => {
-    gsap.fromTo(el,
-      { y: 48, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.7, ease: 'back.out(1.8)',
-        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
-      });
-  });
-
-  // Card grids — staggered fan-in (Sections 01 and 02)
-  ['.project-grid', '.cert-grid'].forEach(sel => {
-    const grid = document.querySelector(sel);
-    if (!grid) return;
-    gsap.fromTo(Array.from(grid.children),
-      { y: 60, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.09,
-        scrollTrigger: { trigger: grid, start: 'top 85%', once: true }
-      });
-  });
-
-  // Sections 03 and 04 have long text paragraphs above them.
-  // Trigger them very early (top 110%) so they animate in while the user reads the text,
-  // preventing them from appearing 'late' when the user scrolls down.
-  ['.skill-grid', '.timeline'].forEach(sel => {
-    const grid = document.querySelector(sel);
-    if (!grid) return;
-    gsap.fromTo(Array.from(grid.children),
-      { y: 60, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.09,
-        scrollTrigger: { trigger: grid, start: 'top 110%', once: true }
-      });
-  });
-
-  // Hero content loads in
-  const heroContent = document.querySelector('.hero-content');
-  if (heroContent) {
-    gsap.fromTo(heroContent,
+  const mobileHeroContent = document.querySelector('.hero-content');
+  if (mobileHeroContent) {
+    gsap.fromTo(mobileHeroContent,
       { y: 32, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.75, ease: 'power3.out', delay: 0.15 });
   }
+
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const group = sectionGroups.find((item) => item.section === entry.target);
+        if (group) {
+          revealGroup(group);
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.01, rootMargin: '0px 0px -8% 0px' });
+
+    sectionGroups.forEach((group) => sectionObserver.observe(group.section));
+  }
+
+  let revealFrame = null;
+  window.addEventListener('scroll', () => {
+    if (revealFrame) return;
+    revealFrame = window.requestAnimationFrame(() => {
+      revealFrame = null;
+      revealVisibleGroups();
+    });
+  }, { passive: true });
+
+  window.requestAnimationFrame(() => {
+    ScrollTrigger.refresh();
+    revealVisibleGroups();
+  });
+  return;
 }
 
 /* ─────────────────────────────────────────────
