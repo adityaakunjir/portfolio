@@ -540,92 +540,111 @@ function initMobileGSAP() {
   ScrollTrigger.config({ ignoreMobileResize: true });
   document.documentElement.classList.add('gsap-init');
 
-  const sectionGroups = gsap.utils.toArray('.section').map((section) => {
-    const targets = section.querySelectorAll(
-      '.section-heading, .project-card, .cert-card, .skill-panel, .about-copy, .timeline article, .contact-panel'
-    );
+  const buildRevealItems = (selector, options = {}) => gsap.utils.toArray(selector).map((target) => {
+    const parentCards = target.parentElement
+      ? Array.from(target.parentElement.querySelectorAll(options.siblingSelector || selector))
+      : [];
+    const index = Math.max(parentCards.indexOf(target), 0);
 
     return {
-      section,
-      targets: Array.from(targets),
+      target,
+      trigger: target,
+      delay: Math.min(index * (options.staggerDelay || 0), options.maxDelay || 0),
+      y: options.y || 46,
+      duration: options.duration || 1.15,
     };
-  }).filter((group) => group.targets.length);
+  });
 
-  const revealGroup = (group) => {
-    if (group.revealed) return;
-    group.revealed = true;
-    group.timeline.play(0);
+  const headingItems = buildRevealItems('.section .section-heading, .section .about-copy', {
+    y: 34,
+    duration: 1,
+  });
+  const cardItems = buildRevealItems(
+    '.section .project-card, .section .cert-card, .section .skill-panel, .section .timeline article, .section .contact-panel',
+    {
+      siblingSelector: '.project-card, .cert-card, .skill-panel, .timeline article, .contact-panel',
+      staggerDelay: 0.08,
+      maxDelay: 0.28,
+      y: 46,
+      duration: 1.15,
+    }
+  );
+  const revealItemsMobile = [...headingItems, ...cardItems];
+
+  document.querySelectorAll('.section .timeline').forEach((container) => {
+    container.classList.add('is-visible');
+  });
+
+  const revealItem = (item) => {
+    if (item.revealed) return;
+    item.revealed = true;
+    item.timeline.play(0);
   };
 
-  const revealVisibleGroups = () => {
-    sectionGroups.forEach((group) => {
-      if (group.revealed) return;
-      const rect = group.section.getBoundingClientRect();
+  const revealVisibleItems = () => {
+    revealItemsMobile.forEach((item) => {
+      if (item.revealed) return;
+      const rect = item.trigger.getBoundingClientRect();
       if (rect.top <= window.innerHeight * 0.92 && rect.bottom >= 0) {
-        revealGroup(group);
+        revealItem(item);
       }
     });
   };
 
-  sectionGroups.forEach((group) => {
-    const { section, targets } = group;
-
-    gsap.set(targets, {
-      autoAlpha: 0,
-      y: 28,
+  revealItemsMobile.forEach((item) => {
+    gsap.set(item.target, {
+      autoAlpha: 0.18,
+      y: item.y,
       force3D: true,
       transition: 'none',
       willChange: 'transform, opacity',
     });
 
-    group.timeline = gsap.timeline({
+    item.timeline = gsap.timeline({
       paused: true,
-      defaults: { ease: 'power3.out' },
+      defaults: { ease: 'power2.out' },
       onComplete() {
-        targets.forEach((target) => target.classList.add('is-visible'));
-        gsap.set(targets, { clearProps: 'willChange,transition,transform,opacity,visibility' });
+        item.target.classList.add('is-visible');
+        gsap.set(item.target, { clearProps: 'willChange,transition,transform,opacity,visibility' });
       },
-    }).to(targets, {
+    }).to(item.target, {
       autoAlpha: 1,
       y: 0,
-      duration: 0.62,
-      stagger: {
-        each: 0.055,
-        from: 'start',
-      },
+      duration: item.duration,
+      delay: item.delay,
     });
 
     ScrollTrigger.create({
-      trigger: section,
+      trigger: item.trigger,
       start: 'top 92%',
       end: 'bottom top',
       once: true,
       invalidateOnRefresh: true,
-      onEnter: () => revealGroup(group),
-      onEnterBack: () => revealGroup(group),
+      onEnter: () => revealItem(item),
+      onEnterBack: () => revealItem(item),
     });
   });
 
   const mobileHeroContent = document.querySelector('.hero-content');
   if (mobileHeroContent) {
     gsap.fromTo(mobileHeroContent,
-      { y: 32, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.75, ease: 'power3.out', delay: 0.15 });
+      { y: 42, opacity: 0.18 },
+      { y: 0, opacity: 1, duration: 1.15, ease: 'power2.out', delay: 0.15 });
   }
 
   if ('IntersectionObserver' in window) {
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        const group = sectionGroups.find((item) => item.section === entry.target);
-        if (group) {
-          revealGroup(group);
+        const item = revealItemsMobile.find((revealItemConfig) => revealItemConfig.trigger === entry.target);
+        if (item) {
+          revealItem(item);
           sectionObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.01, rootMargin: '0px 0px -8% 0px' });
 
-    sectionGroups.forEach((group) => sectionObserver.observe(group.section));
+    revealItemsMobile.forEach((item) => sectionObserver.observe(item.trigger));
   }
 
   let revealFrame = null;
@@ -633,13 +652,13 @@ function initMobileGSAP() {
     if (revealFrame) return;
     revealFrame = window.requestAnimationFrame(() => {
       revealFrame = null;
-      revealVisibleGroups();
+      revealVisibleItems();
     });
   }, { passive: true });
 
   window.requestAnimationFrame(() => {
     ScrollTrigger.refresh();
-    revealVisibleGroups();
+    revealVisibleItems();
   });
   return;
 }
