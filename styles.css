@@ -5,12 +5,13 @@
   --panel-strong: #14121c;
   --text: #f8f3ee;
   --muted: #a99fa5;
-  --hot: #ff0a5b;
-  --hot-dark: #a9053f;
-  --cyan: #35d8e6;
-  --yellow: #f5e64a;
-  --green: #5ff0a6;
-  --neon: #00FF41;
+  --hot: oklch(70% 0.3 20);
+  --hot-dark: oklch(44% 0.2 20);
+  --cyan: oklch(85% 0.28 200);
+  --yellow: oklch(91% 0.22 100);
+  --green: oklch(87% 0.22 152);
+  --neon: oklch(87% 0.22 152);
+  --acid: oklch(70% 0.3 140);
   --line: rgba(255, 255, 255, 0.13);
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
   --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.28);
@@ -52,7 +53,9 @@ body {
   overflow-x: hidden;
   background-color: var(--bg);
   background:
-    radial-gradient(circle at var(--mx) var(--my), rgba(255, 10, 91, 0.22), transparent 24rem),
+    radial-gradient(circle at var(--mx) var(--my), oklch(70% 0.3 20 / 0.24), transparent 24rem),
+    radial-gradient(circle at 82% 18%, oklch(85% 0.28 200 / 0.15), transparent 28rem),
+    radial-gradient(circle at 12% 74%, oklch(87% 0.22 152 / 0.12), transparent 24rem),
     linear-gradient(135deg, #150713 0%, #06070d 42%, #03040a 100%);
   background-color: var(--bg);
   color: var(--text);
@@ -106,11 +109,12 @@ img {
   inset: 0;
   z-index: 50;
   pointer-events: none;
-  opacity: 0.028;
+  opacity: 0.045;
   background-image:
     radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.16), transparent 2px),
-    radial-gradient(circle at 75% 70%, rgba(255, 255, 255, 0.12), transparent 1px);
-  background-size: 97px 83px, 131px 109px;
+    radial-gradient(circle at 75% 70%, rgba(255, 255, 255, 0.12), transparent 1px),
+    repeating-radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 4px);
+  background-size: 97px 83px, 131px 109px, 19px 23px;
   mix-blend-mode: screen;
 }
 
@@ -935,6 +939,20 @@ h3 {
   --spin-border-opacity: 1;
 }
 
+.project-card,
+.skill-panel,
+.cert-card,
+.timeline article {
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 18%, rgba(255, 255, 255, 0.5) 48%, rgba(255, 255, 255, 0.08) 78%, transparent 100%) top / 100% 1px no-repeat,
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.024)),
+    radial-gradient(circle at 18% 0%, oklch(85% 0.28 200 / 0.13), transparent 18rem),
+    rgba(9, 13, 22, 0.62);
+  backdrop-filter: blur(16px) saturate(1.25);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow);
+}
+
 .project-card {
   position: relative;
   overflow: hidden;
@@ -1143,23 +1161,31 @@ h3 {
 .cert-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .14);
   border-radius: 8px;
-  background: rgba(255, 255, 255, .025);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .105), rgba(255, 255, 255, .026)),
+    radial-gradient(circle at 18% 0%, oklch(85% 0.28 200 / 0.16), transparent 17rem),
+    rgba(9, 13, 22, .58);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
   transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
   clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 18px 50px rgba(0, 0, 0, .24);
 }
 
 .cert-card:hover {
-  border-color: rgba(53, 216, 230, .35);
-  box-shadow: 0 0 28px rgba(53, 216, 230, .12), 0 8px 32px rgba(0, 0, 0, .3);
+  border-color: oklch(85% 0.28 200 / .42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 0 34px oklch(85% 0.28 200 / .15), 0 18px 46px rgba(0, 0, 0, .34);
   transform: translateY(-3px);
 }
 
 .cert-img-wrap {
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, .07);
-  background: rgba(255, 255, 255, .04);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .035)),
+    rgba(255, 255, 255, .04);
 }
 
 .cert-img-wrap img {
@@ -1516,16 +1542,26 @@ h3 {
 
 .project-card::before,
 .skill-panel::before,
+.cert-card::before,
 .timeline article::after,
 .contact-panel::before,
 .hero-metrics div::before {
   position: absolute;
   inset: 0;
+  z-index: 1;
   content: "";
-  background: radial-gradient(circle at var(--card-x, 50%) var(--card-y, 50%), rgba(255, 255, 255, 0.18), transparent 30%);
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 18%, rgba(255, 255, 255, 0.58) 48%, rgba(255, 255, 255, 0.08) 78%, transparent 100%) top / 100% 1px no-repeat,
+    radial-gradient(circle at var(--card-x, 50%) var(--card-y, 50%), rgba(255, 255, 255, 0.1), transparent 30%);
   opacity: var(--card-glow, 0);
   pointer-events: none;
   transition: opacity 160ms ease;
+}
+
+.project-card::before,
+.skill-panel::before,
+.cert-card::before {
+  opacity: 1;
 }
 
 .project-card::after,
@@ -1569,6 +1605,7 @@ h3 {
 
 .project-card:hover,
 .skill-panel:hover,
+.cert-card:hover,
 .timeline article:hover,
 .contact-panel:hover,
 .hero-metrics div:hover {
@@ -1589,8 +1626,11 @@ h3 {
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
     radial-gradient(circle at 20% 20%, rgba(255, 112, 35, 0.12), transparent 40%),
-    #0b0f1a;
+    rgba(11, 15, 26, 0.56);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
 }
 
 .media-frame::after {
@@ -1612,7 +1652,12 @@ h3 {
 }
 
 .card-body {
+  position: relative;
+  z-index: 2;
   padding: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
+    rgba(8, 11, 19, 0.32);
 }
 
 .card-body p:not(.card-index) {
@@ -1754,8 +1799,8 @@ h3 {
 }
 
 .timeline article:last-child {
-  border-color: rgba(255, 112, 35, 0.3);
-  box-shadow: var(--shadow), inset 0 0 24px rgba(255, 112, 35, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow);
 }
 
 .timeline article::before {
@@ -3260,4 +3305,3 @@ h3 {
     font-size: 0.8rem;
   }
 }
-
