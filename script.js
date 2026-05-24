@@ -481,11 +481,10 @@ function initMobileLoader(onComplete) {
   const shimmerBar = loader.querySelector('#loader-shimmer');
   const blade      = loader.querySelector('.loader-blade');
 
-  // Step 1 — Brand logo springs in (overshoot spring)
+  // Step 1 — Brand logo fades in (no movement — stays still like SOFTWARE DEVELOPER)
   setTimeout(() => {
     if (!brandImg) return;
-    brandImg.style.transition = 'transform 0.65s cubic-bezier(0.34,1.56,0.64,1), opacity 0.45s ease';
-    brandImg.style.transform  = 'scale(1) translateY(0)';
+    brandImg.style.transition = 'opacity 0.5s ease';
     brandImg.style.opacity    = '1';
   }, 150);
 
