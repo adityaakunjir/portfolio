@@ -3085,16 +3085,16 @@ h3 {
     opacity: 0;
   }
 
-  /* Cyan ghost — upper slice, offset left */
+  /* Cyan ghost — upper slice, offset left — exact var(--cyan) match */
   .loader-logo-wrap::before {
-    filter: sepia(1) saturate(30) hue-rotate(155deg) brightness(1.5);
+    filter: invert(1) sepia(1) saturate(8) hue-rotate(155deg) brightness(1.4);
     clip-path: inset(38% 0 32% 0);
     transform: translateX(-6px);
   }
 
-  /* Hot pink ghost — lower slice, offset right */
+  /* Hot pink ghost — lower slice, offset right — exact var(--hot) match */
   .loader-logo-wrap::after {
-    filter: sepia(1) saturate(30) hue-rotate(295deg) brightness(1.5);
+    filter: invert(1) sepia(1) saturate(8) hue-rotate(295deg) brightness(1.4);
     clip-path: inset(60% 0 8% 0);
     transform: translateX(6px);
   }
