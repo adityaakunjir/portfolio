@@ -476,11 +476,28 @@ function initMobileLoader(onComplete) {
     return;
   }
 
-  const brandImg  = loader.querySelector('.loader-brand-img');
-  const shimmerBar = loader.querySelector('#loader-shimmer');
-  const blade     = loader.querySelector('.loader-blade');
+  const brandImg    = loader.querySelector('.loader-brand-img');
+  const shimmerBar  = loader.querySelector('#loader-shimmer');
+  const progressFill = loader.querySelector('#loader-progress');
+  const blade       = loader.querySelector('.loader-blade');
 
-  // Step 1 — Brand logo springs in (same spring curve as old AK mark)
+  // ── Progress bar: rAF-driven 0 → 85% over ~1600ms, then 100% before blade ──
+  const PROGRESS_DURATION = 1600;
+  let progressStart = null;
+  let progressFrame = null;
+
+  function tickProgress(ts) {
+    if (!progressStart) progressStart = ts;
+    const elapsed = ts - progressStart;
+    const pct = Math.min((elapsed / PROGRESS_DURATION) * 85, 85);
+    if (progressFill) progressFill.style.width = pct.toFixed(1) + '%';
+    if (pct < 85) {
+      progressFrame = requestAnimationFrame(tickProgress);
+    }
+  }
+  progressFrame = requestAnimationFrame(tickProgress);
+
+  // Step 1 — Brand logo springs in
   setTimeout(() => {
     if (!brandImg) return;
     brandImg.style.transition = 'transform 0.65s cubic-bezier(0.34,1.56,0.64,1), opacity 0.45s ease';
@@ -488,36 +505,42 @@ function initMobileLoader(onComplete) {
     brandImg.style.opacity    = '1';
   }, 150);
 
-  // Step 2 — Shimmer bar sweeps across (mimics the typing-reveal feel)
+  // Step 2 — Shimmer bar sweeps across
   setTimeout(() => {
     if (!shimmerBar) return;
     shimmerBar.classList.add('is-sweeping');
   }, 700);
 
-  // Step 3 — Pulse-glow on the logo (like the cursor blink at end of typing)
+  // Step 3 — Glitch flicker on the logo
   setTimeout(() => {
     if (!brandImg) return;
-    brandImg.style.transition += ', filter 0.25s ease';
-    brandImg.style.filter = 'drop-shadow(0 0 48px rgba(255,255,255,0.75)) drop-shadow(0 0 96px rgba(255,255,255,0.35))';
-    setTimeout(() => {
-      brandImg.style.filter = 'drop-shadow(0 0 32px rgba(255,255,255,0.45)) drop-shadow(0 0 72px rgba(255,255,255,0.18))';
-    }, 280);
-  }, 1580);
+    brandImg.classList.add('is-glitching');
+    setTimeout(() => brandImg.classList.remove('is-glitching'), 560);
+  }, 1100);
 
-  // Step 4 — blade slash wipes left across the loader
+  // Step 4 — Progress bar snaps to 100%
+  setTimeout(() => {
+    cancelAnimationFrame(progressFrame);
+    if (progressFill) {
+      progressFill.style.transition = 'width 0.22s ease';
+      progressFill.style.width = '100%';
+    }
+  }, 1680);
+
+  // Step 5 — blade slash wipes left across the loader
   setTimeout(() => {
     if (!blade) return;
     blade.style.transition = 'clip-path 0.38s cubic-bezier(0.7,0,0.3,1)';
     blade.style.clipPath = 'polygon(-10% 0, 110% 0, 110% 100%, -10% 100%)';
-  }, 1780);
+  }, 1900);
 
-  // Step 5 — remove loader, run callback
+  // Step 6 — remove loader, run callback
   setTimeout(() => {
     window.scrollTo(0, 0);
     loader.classList.add('loader-hidden');
     setTimeout(() => loader.remove(), 200);
     onComplete?.();
-  }, 2180);
+  }, 2300);
 }
 
 /* ─────────────────────────────────────────────
