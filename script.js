@@ -477,43 +477,31 @@ function initMobileLoader(onComplete) {
   }
 
   const brandImg   = loader.querySelector('.loader-brand-img');
-  const nameLabel  = loader.querySelector('.loader-name-label');
+  const logoWrap   = loader.querySelector('.loader-logo-wrap');
   const shimmerBar = loader.querySelector('#loader-shimmer');
   const blade      = loader.querySelector('.loader-blade');
 
-  // Step 1 — Brand logo fades in (no movement — stays still like SOFTWARE DEVELOPER)
+  // Step 1 — Logo fades in, stays still
   setTimeout(() => {
     if (!brandImg) return;
     brandImg.style.transition = 'opacity 0.5s ease';
     brandImg.style.opacity    = '1';
   }, 150);
 
-  // Step 1b — name label fades in after logo lands
-  setTimeout(() => {
-    if (!nameLabel) return;
-    nameLabel.style.transition = 'opacity 0.4s ease';
-    nameLabel.style.opacity    = '1';
-  }, 650);
-
-  // Step 2 — Shimmer bar sweeps across (typing-reveal feel)
+  // Step 2 — Shimmer bar sweeps across
   setTimeout(() => {
     if (!shimmerBar) return;
     shimmerBar.classList.add('is-sweeping');
   }, 800);
 
-  // Step 3 — Glitch flicker on logo + name label simultaneously
+  // Step 3 — Glitch fires on the logo wrapper (ghost layers flash cyan + hot)
   setTimeout(() => {
-    if (brandImg) {
-      brandImg.classList.add('is-glitching');
-      brandImg.addEventListener('animationend', () => brandImg.classList.remove('is-glitching'), { once: true });
-    }
-    if (nameLabel) {
-      nameLabel.classList.add('is-glitching');
-      nameLabel.addEventListener('animationend', () => nameLabel.classList.remove('is-glitching'), { once: true });
-    }
+    if (!logoWrap) return;
+    logoWrap.classList.add('is-glitching');
+    logoWrap.addEventListener('animationend', () => logoWrap.classList.remove('is-glitching'), { once: true });
   }, 1450);
 
-  // Step 4 — blade slash wipes left across the loader
+  // Step 4 — blade slash wipes the loader away
   setTimeout(() => {
     if (!blade) return;
     blade.style.transition = 'clip-path 0.38s cubic-bezier(0.7,0,0.3,1)';
