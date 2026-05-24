@@ -2763,6 +2763,15 @@ h3 {
 
 @media (max-width: 780px) {
 
+  /* Remove grid lines / grain on mobile home screen */
+  body::before {
+    display: none;
+  }
+
+  .hero::after {
+    display: none;
+  }
+
   /* Show hamburger, hide desktop resume CTA */
   .nav-hamburger {
     display: flex;
