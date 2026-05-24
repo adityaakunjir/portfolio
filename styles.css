@@ -1093,57 +1093,55 @@ h3 {
 }
 
 .media-list-label {
-  margin: 0 0 16px;
-  color: var(--cyan);
-  font-family: var(--font-heading);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  margin: 0 0 20px;
+  color: #202226;
+  font-family: var(--font-body);
+  font-size: clamp(1.45rem, 2.6vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .media-item {
   display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 20px;
-  align-items: start;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, .06);
-  transition: background 180ms ease;
+  grid-template-columns: minmax(280px, 410px) minmax(260px, 1fr);
+  gap: clamp(22px, 4vw, 40px);
+  align-items: center;
+  padding: 14px 0 20px;
+  color: #202226;
 }
 
-.media-item:last-child {
-  border-bottom: 0;
-}
-
-.media-item:hover {
-  background: rgba(255, 255, 255, .02);
+.media-item + .media-item {
+  margin-top: 10px;
 }
 
 .media-item img {
-  width: 180px;
-  height: 118px;
+  width: 100%;
+  height: clamp(190px, 22vw, 244px);
   object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, .08);
+  object-position: top left;
+  border-radius: 0;
+  border: 0;
   display: block;
   flex-shrink: 0;
+  background: #f5f0e8;
 }
 
 .media-info h4 {
-  margin: 0 0 6px;
-  color: var(--text);
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  margin: 0 0 8px;
+  color: #202226;
+  font-family: var(--font-body);
+  font-size: clamp(1.06rem, 1.8vw, 1.36rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.16;
 }
 
 .media-info p {
   margin: 0;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  color: #34363a;
+  font-size: clamp(0.94rem, 1.45vw, 1.08rem);
+  line-height: 1.28;
 }
 
 /* ── Certificates section ── */
@@ -1537,7 +1535,20 @@ h3 {
 }
 
 .panel-screenshots {
-  padding-top: 32px;
+  margin-top: 32px;
+  padding: 22px clamp(20px, 3vw, 34px) 28px;
+  border-radius: 8px;
+  background: #f8f8f6;
+  color: #202226;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.panel-screenshots .media-item {
+  min-height: 236px;
+}
+
+.panel-screenshots .media-info {
+  max-width: 520px;
 }
 
 .project-card::before,
@@ -2334,8 +2345,7 @@ h3 {
     font-size: 0.62rem;
   }
 
-  .contact-actions .btn:first-child,
-  .contact-actions .btn:last-child {
+  .contact-actions .btn:first-child {
     grid-column: 1 / -1;
   }
 
@@ -2388,43 +2398,44 @@ h3 {
     width: auto;
   }
 
-  /* Keep 2 cols for non-featured cards even on small screens */
+  /* Switch to 1-col for non-featured cards on narrow screens */
   .project-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-  /* Compact card styling for 2-col mobile layout */
+  /* Reduce clip-path notch on small cards to avoid clipping content */
+  .project-card {
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+
+  /* Compact card styling for mobile layout */
   .project-card:not(.project-featured) .card-body {
-    padding: 12px 14px;
-  }
-
-  .project-card:not(.project-featured) .card-body p:not(.card-index) {
-    display: none;
+    padding: 14px 16px;
   }
 
   .project-card:not(.project-featured) .card-body h3 {
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     margin-bottom: 6px;
   }
 
   .project-card:not(.project-featured) .tag-list {
     margin: 8px 0;
-    gap: 4px;
+    gap: 5px;
   }
 
   .project-card:not(.project-featured) .tag-list li {
-    padding: 3px 5px;
-    font-size: 0.55rem;
+    padding: 4px 6px;
+    font-size: 0.58rem;
   }
 
   .project-card:not(.project-featured) .card-cta {
-    font-size: 0.6rem;
-    margin-top: 8px;
+    font-size: 0.62rem;
+    margin-top: 10px;
   }
 
   .project-card:not(.project-featured) .media-frame {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
   }
 
   .section {
@@ -2457,9 +2468,23 @@ h3 {
     gap: 14px;
   }
 
+  .panel-screenshots {
+    padding: 18px 16px 24px;
+  }
+
+  .panel-screenshots .media-item {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
   .media-item img {
     width: 120px;
     height: 80px;
+  }
+
+  .panel-screenshots .media-item img {
+    width: 100%;
+    height: 180px;
   }
 
   .cert-grid {
@@ -2822,7 +2847,7 @@ h3 {
 
   /* Featured card: proper image height on mobile */
   .project-featured .media-frame {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 16 / 10;
   }
 
   /* card-cta as a proper pill chip */
@@ -2942,9 +2967,9 @@ h3 {
     font-size: clamp(2.2rem, 12.5vw, 3rem);
   }
 
-  /* Project featured: even more compact image */
+  /* Project featured: keep image visible on narrow screens */
   .project-featured .media-frame {
-    aspect-ratio: 16 / 7;
+    aspect-ratio: 16 / 9;
   }
 
   /* Cert grid: 2-col stays, first full-width stays */
@@ -3162,21 +3187,8 @@ h3 {
     padding: 44px 16px;
   }
 
-  h1 {
-    font-size: clamp(2.05rem, 9vw, 2.45rem);
-    line-height: 0.96;
-    letter-spacing: 0;
-  }
-
-  h2 {
-    font-size: clamp(1.35rem, 5.6vw, 1.72rem);
-    line-height: 1;
-  }
-
-  h3 {
-    font-size: clamp(0.88rem, 3.8vw, 1.02rem);
-    line-height: 1.08;
-  }
+  /* h1/h2/h3 sizes inherited from earlier 780px block — not overriding here
+     to avoid cascade conflicts with the premium mobile sizes */
 
   p,
   .hero-copy,
@@ -3303,5 +3315,20 @@ h3 {
 
   .panel-hero-info p {
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .panel-screenshots .media-list-label {
+    font-size: 1.35rem;
+  }
+
+  .panel-screenshots .media-info h4 {
+    font-size: 1.05rem;
+  }
+
+  .panel-screenshots .media-info p {
+    font-size: 0.9rem;
+    line-height: 1.35;
   }
 }
