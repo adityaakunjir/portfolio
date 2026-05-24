@@ -476,54 +476,48 @@ function initMobileLoader(onComplete) {
     return;
   }
 
-  const akMark = loader.querySelector('.loader-ak-mark');
-  const jpEl = loader.querySelector('#loader-jp');
-  const blade = loader.querySelector('.loader-blade');
-  const jpText = '未来を構築する';
+  const brandImg  = loader.querySelector('.loader-brand-img');
+  const shimmerBar = loader.querySelector('#loader-shimmer');
+  const blade     = loader.querySelector('.loader-blade');
 
-  // Typing cursor span
-  const jpCursor = document.createElement('span');
-  jpCursor.className = 'loader-jp-cursor';
-  jpCursor.textContent = '|';
-
-  // Step 1 — AK mark springs in
+  // Step 1 — Brand logo springs in (same spring curve as old AK mark)
   setTimeout(() => {
-    if (!akMark) return;
-    akMark.style.transition = 'transform 0.55s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease';
-    akMark.style.transform = 'scale(1)';
-    akMark.style.opacity = '1';
+    if (!brandImg) return;
+    brandImg.style.transition = 'transform 0.65s cubic-bezier(0.34,1.56,0.64,1), opacity 0.45s ease';
+    brandImg.style.transform  = 'scale(1)';
+    brandImg.style.opacity    = '1';
   }, 150);
 
-  // Step 2 — JP text fades in then types
+  // Step 2 — Shimmer bar sweeps across (mimics the typing-reveal feel)
   setTimeout(() => {
-    if (!jpEl) return;
-    jpEl.style.transition = 'opacity 0.3s ease';
-    jpEl.style.opacity = '1';
-    jpEl.appendChild(jpCursor);
-    let i = 0;
-    const typeIt = setInterval(() => {
-      if (i < jpText.length) {
-        jpEl.insertBefore(document.createTextNode(jpText[i++]), jpCursor);
-      } else {
-        clearInterval(typeIt);
-      }
-    }, 85);
-  }, 650);
+    if (!shimmerBar) return;
+    shimmerBar.classList.add('is-sweeping');
+  }, 700);
 
-  // Step 3 — blade slash wipes left across the loader
+  // Step 3 — Pulse-glow on the logo (like the cursor blink at end of typing)
+  setTimeout(() => {
+    if (!brandImg) return;
+    brandImg.style.transition += ', filter 0.25s ease';
+    brandImg.style.filter = 'drop-shadow(0 0 48px rgba(255,255,255,0.75)) drop-shadow(0 0 96px rgba(255,255,255,0.35))';
+    setTimeout(() => {
+      brandImg.style.filter = 'drop-shadow(0 0 32px rgba(255,255,255,0.45)) drop-shadow(0 0 72px rgba(255,255,255,0.18))';
+    }, 280);
+  }, 1580);
+
+  // Step 4 — blade slash wipes left across the loader
   setTimeout(() => {
     if (!blade) return;
     blade.style.transition = 'clip-path 0.38s cubic-bezier(0.7,0,0.3,1)';
     blade.style.clipPath = 'polygon(-10% 0, 110% 0, 110% 100%, -10% 100%)';
-  }, 1680);
+  }, 1780);
 
-  // Step 4 — remove loader, run callback
+  // Step 5 — remove loader, run callback
   setTimeout(() => {
     window.scrollTo(0, 0);
     loader.classList.add('loader-hidden');
     setTimeout(() => loader.remove(), 200);
     onComplete?.();
-  }, 2060);
+  }, 2180);
 }
 
 /* ─────────────────────────────────────────────

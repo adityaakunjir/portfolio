@@ -22,6 +22,8 @@
     href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
   <link rel="preload" href="assets/hero-poster.jpg" as="image" />
+  <link rel="preload" href="assets/brand-logo-loading.webp" as="image" type="image/webp" />
+  <link rel="preload" href="assets/brand-logo-opt.webp" as="image" type="image/webp" />
   <link rel="stylesheet" href="styles.css?v=20260524-media-gallery" />
 </head>
 
@@ -29,8 +31,8 @@
   <!-- ── Mobile Cinematic Loader ── -->
   <div id="mobile-loader" aria-hidden="true">
     <div class="loader-inner">
-      <div class="loader-ak-mark">AK</div>
-      <p class="loader-jp" id="loader-jp"></p>
+      <img class="loader-brand-img" src="assets/brand-logo-loading.webp" alt="" aria-hidden="true" />
+      <div class="loader-shimmer-bar" id="loader-shimmer"></div>
     </div>
     <div class="loader-blade"></div>
   </div>
@@ -194,7 +196,7 @@
 
   <header class="site-nav" data-nav>
     <a class="brand" href="#top" aria-label="Aditya Kunjir home">
-      <img class="brand-logo" src="assets/brand-logo.png" alt="Aditya Kunjir" />
+      <img class="brand-logo" src="assets/brand-logo-opt.webp" alt="Aditya Kunjir" width="600" height="165" />
     </a>
 
     <nav class="site-links" aria-label="Primary navigation">
