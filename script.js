@@ -477,6 +477,7 @@ function initMobileLoader(onComplete) {
   }
 
   const brandImg   = loader.querySelector('.loader-brand-img');
+  const nameLabel  = loader.querySelector('.loader-name-label');
   const shimmerBar = loader.querySelector('#loader-shimmer');
   const blade      = loader.querySelector('.loader-blade');
 
@@ -488,26 +489,37 @@ function initMobileLoader(onComplete) {
     brandImg.style.opacity    = '1';
   }, 150);
 
+  // Step 1b — name label fades in after logo lands
+  setTimeout(() => {
+    if (!nameLabel) return;
+    nameLabel.style.transition = 'opacity 0.4s ease';
+    nameLabel.style.opacity    = '1';
+  }, 650);
+
   // Step 2 — Shimmer bar sweeps across (typing-reveal feel)
   setTimeout(() => {
     if (!shimmerBar) return;
     shimmerBar.classList.add('is-sweeping');
-  }, 750);
+  }, 800);
 
-  // Step 3 — Glitch flicker (like cursor blink + corrupted signal)
+  // Step 3 — Glitch flicker on logo + name label simultaneously
   setTimeout(() => {
-    if (!brandImg) return;
-    brandImg.classList.add('is-glitching');
-    // Remove class after animation so it can re-trigger if needed
-    brandImg.addEventListener('animationend', () => brandImg.classList.remove('is-glitching'), { once: true });
-  }, 1400);
+    if (brandImg) {
+      brandImg.classList.add('is-glitching');
+      brandImg.addEventListener('animationend', () => brandImg.classList.remove('is-glitching'), { once: true });
+    }
+    if (nameLabel) {
+      nameLabel.classList.add('is-glitching');
+      nameLabel.addEventListener('animationend', () => nameLabel.classList.remove('is-glitching'), { once: true });
+    }
+  }, 1450);
 
   // Step 4 — blade slash wipes left across the loader
   setTimeout(() => {
     if (!blade) return;
     blade.style.transition = 'clip-path 0.38s cubic-bezier(0.7,0,0.3,1)';
     blade.style.clipPath = 'polygon(-10% 0, 110% 0, 110% 100%, -10% 100%)';
-  }, 1900);
+  }, 1950);
 
   // Step 5 — remove loader, run callback
   setTimeout(() => {
@@ -515,7 +527,7 @@ function initMobileLoader(onComplete) {
     loader.classList.add('loader-hidden');
     setTimeout(() => loader.remove(), 200);
     onComplete?.();
-  }, 2300);
+  }, 2350);
 }
 
 /* ─────────────────────────────────────────────
