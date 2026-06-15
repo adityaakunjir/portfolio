@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">DataCamp AI Engineer certificate preview</title>
+  <desc id="desc">Certificate preview for DataCamp AI Engineer for Developers Associate.</desc>
+  <rect width="900" height="520" fill="#ffffff"/>
+  <rect x="0" y="0" width="90" height="520" fill="#05192d"/>
+  <rect x="90" y="0" width="24" height="520" fill="#03ef62"/>
+  <text x="170" y="140" fill="#1f2937" font-family="Arial, sans-serif" font-size="34" font-weight="800">DataCamp Certified</text>
+  <text x="170" y="198" fill="#05192d" font-family="Arial, sans-serif" font-size="44" font-weight="900">AI Engineer</text>
+  <text x="170" y="244" fill="#03ef62" font-family="Arial, sans-serif" font-size="24" font-weight="800">for Developers Associate</text>
+  <text x="170" y="295" fill="#64748b" font-family="Arial, sans-serif" font-size="22">Awarded to Aditya Kunjir</text>
+  <rect x="170" y="350" width="210" height="58" rx="8" fill="#f1f5f9"/>
+  <text x="196" y="386" fill="#334155" font-family="Arial, sans-serif" font-size="18" font-weight="700">Issued May 2026</text>
+  <circle cx="730" cy="348" r="72" fill="#e5fdf0" stroke="#03ef62" stroke-width="8"/>
+  <text x="702" y="360" fill="#05192d" font-family="Arial, sans-serif" font-size="32" font-weight="900">AI</text>
+</svg>

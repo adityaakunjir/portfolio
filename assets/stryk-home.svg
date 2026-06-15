@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Stryk Football Analytics Dashboard</title>
+  <desc id="desc">FIFA-style player card, matchmaking lobby status, and statistics radar chart mockup.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#020813"/>
+      <stop offset="50%" stop-color="#071226"/>
+      <stop offset="100%" stop-color="#140a1c"/>
+    </linearGradient>
+    <linearGradient id="cardGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#35d8e6"/>
+      <stop offset="100%" stop-color="#ff0a5b"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#35d8e6"/>
+      <stop offset="100%" stop-color="#ff0a5b"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#ffffff" stroke-opacity=".06"/>
+    </pattern>
+    <pattern id="scan" width="5" height="5" patternUnits="userSpaceOnUse">
+      <rect width="5" height="1" fill="#ffffff" opacity=".08"/>
+    </pattern>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="560" fill="url(#bg)"/>
+  <rect width="900" height="560" fill="url(#grid)"/>
+
+  <!-- Background Glows -->
+  <circle cx="200" cy="280" r="160" fill="#35d8e6" opacity=".08" filter="url(#neonGlow)"/>
+  <circle cx="680" cy="240" r="180" fill="#ff0a5b" opacity=".06" filter="url(#neonGlow)"/>
+
+  <!-- Left: FIFA-style Player Card -->
+  <!-- Outer glowing border -->
+  <rect x="98" y="98" width="224" height="344" rx="20" fill="none" stroke="url(#cardGlow)" stroke-width="3" filter="url(#neonGlow)"/>
+  <!-- Card background -->
+  <rect x="100" y="100" width="220" height="340" rx="18" fill="#0b1120" stroke="#1e293b" stroke-width="1" opacity="0.95"/>
+  
+  <!-- Card Header -->
+  <text x="130" y="150" fill="#ffffff" font-family="Arial, sans-serif" font-size="34" font-weight="900">99</text>
+  <text x="130" y="174" fill="#35d8e6" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1">ST</text>
+  
+  <!-- Player Silhouette -->
+  <circle cx="210" cy="180" r="45" fill="#1e293b"/>
+  <path d="M165 250c0-25 15-40 45-40s45 15 45 40v10H165v-10z" fill="#334155"/>
+  <circle cx="210" cy="172" r="22" fill="#475569"/>
+
+  <!-- Divider -->
+  <line x1="120" y1="270" x2="300" y2="270" stroke="#334155" stroke-dasharray="4 4"/>
+
+  <!-- Card Stats -->
+  <g font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+    <!-- PAC -->
+    <text x="130" y="300" fill="#ffffff">98</text>
+    <text x="155" y="300" fill="#64748b">PAC</text>
+    <!-- SHO -->
+    <text x="130" y="330" fill="#ffffff">99</text>
+    <text x="155" y="330" fill="#64748b">SHO</text>
+    <!-- PAS -->
+    <text x="130" y="360" fill="#ffffff">95</text>
+    <text x="155" y="360" fill="#64748b">PAS</text>
+    
+    <!-- DRI -->
+    <text x="225" y="300" fill="#ffffff">97</text>
+    <text x="250" y="300" fill="#64748b">DRI</text>
+    <!-- DEF -->
+    <text x="225" y="330" fill="#ffffff">45</text>
+    <text x="250" y="330" fill="#64748b">DEF</text>
+    <!-- PHY -->
+    <text x="225" y="360" fill="#ffffff">90</text>
+    <text x="250" y="360" fill="#64748b">PHY</text>
+  </g>
+  
+  <!-- Player Name -->
+  <text x="210" y="405" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" font-weight="900" text-anchor="middle" letter-spacing="1">STRYK.OWNER</text>
+
+  <!-- Right: Radar Chart & Analytics -->
+  <!-- Stats Card Container -->
+  <rect x="420" y="100" width="380" height="340" rx="16" fill="#0b1120" stroke="#1e293b" stroke-width="1" opacity="0.9"/>
+  
+  <!-- Stats Header -->
+  <text x="450" y="145" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="800">Performance Index</text>
+  <text x="450" y="165" fill="#35d8e6" font-family="Arial, sans-serif" font-size="13" font-weight="700">15+ ACTIVE USERS TRACKING STATS</text>
+
+  <!-- Radar Web (Outer, Mid, Inner) -->
+  <g stroke="#334155" fill="none" stroke-width="1">
+    <!-- Outer Hex -->
+    <polygon points="610,180 690,225 690,315 610,360 530,315 530,225"/>
+    <!-- Mid Hex -->
+    <polygon points="610,210 670,244 670,301 610,335 550,301 550,244"/>
+    <!-- Inner Hex -->
+    <polygon points="610,240 650,263 650,287 610,310 570,287 570,263"/>
+    
+    <!-- Axis lines -->
+    <line x1="610" y1="270" x2="610" y2="180"/>
+    <line x1="610" y1="270" x2="690" y2="225"/>
+    <line x1="610" y1="270" x2="690" y2="315"/>
+    <line x1="610" y1="270" x2="610" y2="360"/>
+    <line x1="610" y1="270" x2="530" y2="315"/>
+    <line x1="610" y1="270" x2="530" y2="225"/>
+  </g>
+
+  <!-- Radar Area (Player Stats) -->
+  <polygon points="610,192 682,234 682,306 610,342 546,306 592,236" fill="url(#barGrad)" fill-opacity="0.35" stroke="url(#cardGlow)" stroke-width="2.5" filter="url(#neonGlow)"/>
+
+  <!-- Radar labels -->
+  <g font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#64748b" text-anchor="middle">
+    <text x="610" y="172">PAC</text>
+    <text x="714" y="224">SHO</text>
+    <text x="714" y="324">PAS</text>
+    <text x="610" y="376">DRI</text>
+    <text x="506" y="324">DEF</text>
+    <text x="506" y="224">PHY</text>
+  </g>
+
+  <!-- Match Lobby Banner -->
+  <rect x="450" y="380" width="320" height="40" rx="8" fill="#1e293b" opacity="0.6"/>
+  <circle cx="472" cy="400" r="5" fill="#22c55e" filter="url(#neonGlow)"/>
+  <text x="490" y="405" fill="#22c55e" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Live Matchmaking Lobby Active</text>
+
+  <!-- Scanlines scan overlay -->
+  <rect width="900" height="560" fill="url(#scan)" opacity=".3"/>
+</svg>
