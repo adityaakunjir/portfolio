@@ -3094,8 +3094,7 @@ h3 {
     align-items: center;
     justify-content: center;
     width: min(78vw, 320px);
-    padding: 20px 18px;
-    gap: 14px;
+    padding: 24px 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     background: rgba(5, 6, 11, 0.24);
@@ -3104,75 +3103,42 @@ h3 {
     -webkit-backdrop-filter: blur(14px) saturate(1.15);
   }
 
-  /* Brand logo — large, fills the viewport width generously */
-  /* ── Logo wrapper — holds the img + glitch ghost layers ── */
-  .loader-logo-wrap {
-    position: relative;
-    width: clamp(190px, 60vw, 270px);
-    display: block;
+  .loader-terminal {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
   }
 
-  /* Ghost layers — same image, colored + clipped, like SOFTWARE DEVELOPER ::before/::after */
-  .loader-logo-wrap::before,
-  .loader-logo-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('assets/brand-logo-loading.webp') center / contain no-repeat;
-    pointer-events: none;
-    opacity: 0;
+  .loader-prompt {
+    color: var(--hot);
+    animation: prompt-flicker 1.2s infinite;
   }
 
-  /* Cyan ghost — var(--cyan) = oklch(85% 0.28 200) ≈ #35d8e6 */
-  .loader-logo-wrap::before {
-    filter: sepia(1) saturate(200) hue-rotate(152deg) brightness(1.6);
-    clip-path: inset(38% 0 32% 0);
-    transform: translateX(-6px);
+  .loader-text {
+    color: var(--text);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
   }
 
-  /* Hot pink ghost — var(--hot) = oklch(70% 0.3 20) ≈ #ff0a5b */
-  .loader-logo-wrap::after {
-    filter: sepia(1) saturate(200) hue-rotate(300deg) brightness(1.3);
-    clip-path: inset(60% 0 8% 0);
-    transform: translateX(6px);
+  .loader-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.6rem;
+    background-color: var(--cyan);
+    animation: cursor-blink 0.8s steps(2, start) infinite;
   }
 
-  /* Trigger glitch on wrapper — same as .glitch-title.is-glitching */
-  .loader-logo-wrap.is-glitching::before {
-    animation: logo-glitch-cyan 620ms steps(2, end) both;
+  @keyframes prompt-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
   }
 
-  .loader-logo-wrap.is-glitching::after {
-    animation: logo-glitch-hot 620ms steps(2, end) both;
-  }
-
-  @keyframes logo-glitch-cyan {
-    0%, 100% { opacity: 0; transform: translateX(0); }
-    14%      { opacity: 0.9; transform: translateX(-7px); }
-    35%      { opacity: 0.65; transform: translateX(4px); }
-    56%      { opacity: 0.88; transform: translateX(-5px); }
-    75%      { opacity: 0; }
-  }
-
-  @keyframes logo-glitch-hot {
-    0%, 100% { opacity: 0; transform: translateX(0); }
-    18%      { opacity: 0.86; transform: translateX(8px); }
-    42%      { opacity: 0.7; transform: translateX(-4px); }
-    64%      { opacity: 0.86; transform: translateX(5px); }
-    82%      { opacity: 0; }
-  }
-
-  .loader-brand-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    opacity: 0;
-    will-change: opacity;
-    position: relative;
-    z-index: 1;
-    filter:
-      drop-shadow(0 0 24px rgba(255, 255, 255, 0.32))
-      drop-shadow(0 0 42px rgba(255, 10, 91, 0.16));
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 
   .loader-wordmark {

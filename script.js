@@ -476,45 +476,41 @@ function initMobileLoader(onComplete) {
     return;
   }
 
-  const brandImg   = loader.querySelector('.loader-brand-img');
-  const logoWrap   = loader.querySelector('.loader-logo-wrap');
-  const shimmerBar = loader.querySelector('#loader-shimmer');
-  const blade      = loader.querySelector('.loader-blade');
+  const textEl = document.getElementById('loader-text');
+  const blade  = loader.querySelector('.loader-blade');
 
-  // Step 1 — Logo fades in, stays still
+  const textToType = "Welcome!";
+  let index = 0;
+
+  function typeChar() {
+    if (index < textToType.length) {
+      if (textEl) {
+        textEl.textContent += textToType[index];
+      }
+      index++;
+      setTimeout(typeChar, 80);
+    }
+  }
+
+  // Start typing after a short delay
   setTimeout(() => {
-    if (!brandImg) return;
-    brandImg.style.transition = 'opacity 0.5s ease';
-    brandImg.style.opacity    = '1';
-  }, 150);
+    typeChar();
+  }, 200);
 
-  // Step 2 — Shimmer bar sweeps across
-  setTimeout(() => {
-    if (!shimmerBar) return;
-    shimmerBar.classList.add('is-sweeping');
-  }, 800);
-
-  // Step 3 — Glitch fires on the logo wrapper (ghost layers flash cyan + hot)
-  setTimeout(() => {
-    if (!logoWrap) return;
-    logoWrap.classList.add('is-glitching');
-    logoWrap.addEventListener('animationend', () => logoWrap.classList.remove('is-glitching'), { once: true });
-  }, 1450);
-
-  // Step 4 — blade slash wipes the loader away
+  // Step 2 — blade slash wipes the loader away
   setTimeout(() => {
     if (!blade) return;
     blade.style.transition = 'clip-path 0.38s cubic-bezier(0.7,0,0.3,1)';
     blade.style.clipPath = 'polygon(-10% 0, 110% 0, 110% 100%, -10% 100%)';
-  }, 1950);
+  }, 1300);
 
-  // Step 5 — remove loader, run callback
+  // Step 3 — remove loader, run callback
   setTimeout(() => {
     window.scrollTo(0, 0);
     loader.classList.add('loader-hidden');
     setTimeout(() => loader.remove(), 200);
     onComplete?.();
-  }, 2350);
+  }, 1700);
 }
 
 /* ─────────────────────────────────────────────
